@@ -1,0 +1,18 @@
+# Real-time policy: a calendar-month ceiling at real shadow prices.
+# Replace ratePerHourINR with your provider's published on-demand price for the instance type.
+apiVersion: p11.burst/v1
+kind: BurstPolicy
+metadata: { name: campus-default, namespace: default }
+spec:
+  monthlyCeilingINR: 2000
+  reserveINR: 100
+  sloLatencyMs: 300
+  minLeaseHours: 1
+  destinations:
+    - { name: private, region: IN, private: true }
+    - { name: pub-in, region: IN, ratePerHourINR: 1.8 }
+    - { name: pub-far, region: non-IN, ratePerHourINR: 1.2 }
+  residency:
+    restricted: [IN]
+    internal: [IN, non-IN]
+    public: [IN, non-IN]

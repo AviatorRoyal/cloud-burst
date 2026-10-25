@@ -1,0 +1,42 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: burstpolicies.p11.burst
+spec:
+  group: p11.burst
+  scope: Namespaced
+  names: { plural: burstpolicies, singular: burstpolicy, kind: BurstPolicy, shortNames: [bp] }
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      additionalPrinterColumns:
+        - { name: Ceiling-INR, type: number, jsonPath: .spec.monthlyCeilingINR }
+        - { name: SLO-ms, type: number, jsonPath: .spec.sloLatencyMs }
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required: [monthlyCeilingINR, sloLatencyMs, destinations]
+              properties:
+                monthlyCeilingINR: { type: number, minimum: 0 }
+                reserveINR: { type: number, minimum: 0 }
+                sloLatencyMs: { type: number, minimum: 1 }
+                minLeaseHours: { type: number, minimum: 0 }
+                rttMultiplier: { type: number, minimum: 1 }
+                billingPeriodHours: { type: number, minimum: 0 }
+                destinations:
+                  type: array
+                  items:
+                    type: object
+                    required: [name, region]
+                    properties:
+                      name: { type: string }
+                      region: { type: string }
+                      ratePerHourINR: { type: number, minimum: 0 }
+                      private: { type: boolean }
+                residency:
+                  type: object
+                  additionalProperties: { type: array, items: { type: string } }

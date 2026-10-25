@@ -1,0 +1,20 @@
+# Time-compressed policy for experiment runs: one run (about an hour) stands in for a billing month.
+# Shadow rates are scaled up (~100x) and the ceiling scaled down so the budget actually binds
+# within a run. Keep the RATIO between pub-in and pub-far equal to the real price ratio.
+apiVersion: p11.burst/v1
+kind: BurstPolicy
+metadata: { name: experiment, namespace: default }
+spec:
+  monthlyCeilingINR: 120
+  reserveINR: 10
+  sloLatencyMs: 300
+  minLeaseHours: 0.1          # 6-minute lease granularity inside the compressed month
+  billingPeriodHours: 1
+  destinations:
+    - { name: private, region: IN, private: true }
+    - { name: pub-in, region: IN, ratePerHourINR: 180 }
+    - { name: pub-far, region: non-IN, ratePerHourINR: 120 }
+  residency:
+    restricted: [IN]
+    internal: [IN, non-IN]
+    public: [IN, non-IN]

@@ -1,0 +1,5 @@
+kubernetes>=29
+pyyaml>=6
+locust>=2.20
+matplotlib>=3.8
+pytest>=8

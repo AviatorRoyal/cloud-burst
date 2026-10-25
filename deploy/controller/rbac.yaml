@@ -1,0 +1,21 @@
+# Only needed when running the controller in-cluster (deploy/controller/controller.yaml).
+apiVersion: v1
+kind: ServiceAccount
+metadata: { name: policyburst, namespace: kube-system }
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata: { name: policyburst }
+rules:
+  - { apiGroups: [""], resources: [nodes], verbs: [get, list, patch] }
+  - { apiGroups: [""], resources: [pods], verbs: [get, list] }
+  - { apiGroups: [""], resources: [pods/eviction], verbs: [create] }
+  - { apiGroups: [apps], resources: [deployments], verbs: [get, list, patch] }
+  - { apiGroups: [p11.burst], resources: [burstpolicies], verbs: [get, list, watch] }
+  - { apiGroups: [metrics.k8s.io], resources: [nodes], verbs: [get, list] }
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata: { name: policyburst }
+roleRef: { apiGroup: rbac.authorization.k8s.io, kind: ClusterRole, name: policyburst }
+subjects: [{ kind: ServiceAccount, name: policyburst, namespace: kube-system }]
