@@ -108,26 +108,28 @@ txt(s, "Rates are shadow prices (provider's published on-demand rate for the ins
 todoTag(p, s, 7.6, 5.85, "REPLACE RATES WITH YOUR PROVIDER'S PRICES", 4.2);
 
 // ---------- 6. Repository (O2) ----------
-s = content(p, "Implementation", "O2 — Implementation in a version-controlled repo", "Python controller on the official Kubernetes client, running in-cluster on k3s");
+s = content(p, "Implementation", "O2 — Implementation in a version-controlled repo", "Python controller on the official Kubernetes client, running on the k3s server");
 code(p, s, [
-  "p11-cloud-bursting/",
-  "├── controller/",
+  "cloud-burst/",
+  "├── policyburst/",
   "│   ├── main.py          # 15 s reconcile loop",
-  "│   ├── policy.py        # BurstPolicy CRD watcher",
+  "│   ├── policy.py        # BurstPolicy model",
   "│   ├── feasibility.py   # residency + latency filters",
   "│   ├── cost.py          # cost accumulator",
-  "│   └── actuator.py      # uncordon/drain, node affinity",
+  "│   ├── decision.py      # when / how much / which work",
+  "│   └── actuator.py      # cordon, node affinity",
   "├── baselines/threshold.py   # B1 (constraints off)",
-  "├── deploy/              # CRD, RBAC, sample app, Prometheus",
-  "├── load/locustfile.py   # burst LoadTestShape",
+  "├── deploy/              # k3s, CRD, policies, sample app",
+  "├── load/locustfile.py   # burst + ramp shapes",
   "├── experiments/run_matrix.py",
-  "└── analysis/plots.ipynb",
+  "├── analysis/            # metrics.py, plots.py",
+  "└── tests/               # 25 unit tests, no cluster",
 ].join("\n"), 0.6, 1.85, 6.9, 4.85, 13);
 card(p, s, 7.8, 1.85, 4.9, 2.6, K.bg2, { line: K.line, dash: "dash" });
 todoTag(p, s, 8.0, 2.0, "INSERT SCREENSHOT: COMMIT HISTORY", 3.6);
 txt(s, "git log --oneline --graph, or the GitHub commits page, showing work spread over the weeks", 8.0, 2.5, 4.5, 1.8, { fontSize: 13, italic: true, color: K.muted, align: "center", valign: "middle" });
 card(p, s, 7.8, 4.7, 4.9, 2.0, K.white, { line: K.line });
-txt(s, [{ text: "Repo: ", options: { bold: true } }, { text: "github.com/<team>/p11-cloud-bursting", options: { breakLine: true } },
+txt(s, [{ text: "Repo: ", options: { bold: true } }, { text: "github.com/AviatorRoyal/cloud-burst", options: { breakLine: true } },
   { text: "Live demo: ", options: { bold: true } }, { text: "kubectl apply a policy, start a burst, watch pods land on pub-in only for restricted traffic." }], 8.0, 4.85, 4.5, 1.75, { fontSize: 14 });
 
 // ---------- 7. Cost accumulator ----------

@@ -240,7 +240,7 @@ plan.forEach((r, i) => {
   txt(s, r[2], x, 3.65, 2.8, 1.3, { fontSize: 14 });
 });
 card(p, s, 0.6, 5.4, 12.1, 1.3, K.bg2);
-txt(s, [{ text: "Repository: ", options: { bold: true } }, { text: "github.com/<team>/p11-cloud-bursting — controller, baselines, Locust shapes, experiment runner and analysis notebooks, all version-controlled from day one." }], 0.85, 5.5, 11.6, 1.1, { fontSize: 15, valign: "middle" });
+txt(s, [{ text: "Repository: ", options: { bold: true } }, { text: "github.com/AviatorRoyal/cloud-burst — controller, baselines, Locust shapes, experiment runner and analysis scripts, all version-controlled from day one." }], 0.85, 5.5, 11.6, 1.1, { fontSize: 15, valign: "middle" });
 
 // ---------- 14. References ----------
 s = content(p, "Plan", "References", null);
