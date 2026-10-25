@@ -174,9 +174,10 @@ const E = evidence();
 const [evHost, evTime] = E.host.split("\n");
 s = content(p, "Testbed", "Testbed evidence: the environment runs", `Captured on ${evHost} at ${evTime.replace("T", " ").replace("+00:00", " UTC")} · raw output in ${E.dir}/`);
 txt(s, "Nodes, with destination and region labels", 0.6, 1.75, 12.1, 0.35, { fontSize: 15, bold: true, color: K.ink });
-code(p, s, "$ kubectl get nodes -L p11.burst/destination,p11.burst/region\n" + E.nodes, 0.6, 2.15, 12.1, 1.95, 12);
-txt(s, "Workload pods and measured round-trip time to each node", 0.6, 4.3, 12.1, 0.35, { fontSize: 15, bold: true, color: K.ink });
-code(p, s, "$ kubectl get pods -n p11-app -o custom-columns=...\n" + E.pods + (E.rtt ? "\n\n$ ping -c 5 <node-ip>   (avg RTT)\n" + E.rtt : ""), 0.6, 4.7, 12.1, 2.0, 11);
+code(p, s, "$ kubectl get nodes -L p11.burst/destination,p11.burst/region\n" + E.nodes, 0.6, 2.15, 12.1, 1.85, 12);
+txt(s, "Workload pods (idle) and measured round-trip time to each node", 0.6, 4.2, 12.1, 0.35, { fontSize: 15, bold: true, color: K.ink });
+code(p, s, "$ kubectl get pods -n p11-app -o custom-columns=...\n" + E.pods, 0.6, 4.6, 6.6, 2.1, 11);
+code(p, s, "$ ping -c 5 <node-ip>   (avg RTT)\n" + E.rtt, 7.4, 4.6, 5.3, 2.1, 11);
 s.addNotes("These are copies of real terminal output saved by deploy/k3s/05-evidence.sh. The two foreign-region nodes show the added netem delay in their round-trip times.");
 
 // ---------- 11. Baselines ----------
