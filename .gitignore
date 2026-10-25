@@ -2,9 +2,10 @@
 __pycache__/
 *.pyc
 .pytest_cache/
-results/runs/
-results/spend/
-results/calibration/
 policyburst-state.json
-evidence/
+state.json
 ~$*.pptx
+# raw per-request logs are large; summaries, events and evidence are kept
+results/**/requests*.csv
+results/**/locust*.csv
+p11.kubeconfig

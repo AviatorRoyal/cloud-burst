@@ -5,7 +5,7 @@ Metrics (as defined in Review 1):
   spend_inr             shadow-priced public spend at the end of the run
   attainment_per_100inr attainment points per INR 100 spent (undefined when nothing was spent)
   rejected_no_dest      failed/late requests of a workload while the controller reported that no
-                        permissible public destination existed for it (residency or latency)
+                        permissible public destination existed for it (residency, latency or budget)
   residency_violations  restricted requests served by a node outside the permitted regions
 """
 from __future__ import annotations
@@ -14,7 +14,7 @@ import csv
 import json
 from pathlib import Path
 
-NO_DEST_REASONS = {"residency", "latency", "no-public-destination"}
+NO_DEST_REASONS = {"residency", "latency", "budget", "no-public-destination"}
 WORKLOAD_SERVICE = {"p11-app/records": "records", "p11-app/lms": "lms", "p11-app/static": "static"}
 
 
@@ -97,9 +97,15 @@ def node_regions_from_json(path: Path) -> dict[str, str]:
     return {n["metadata"]["name"]: n["metadata"].get("labels", {}).get("p11.burst/region", "?") for n in doc["items"]}
 
 
+def read_run_requests(run_dir: Path) -> list[dict]:
+    """All per-process request logs of a run (requests.<pid>.csv), in time order."""
+    rows = [r for p in sorted(Path(run_dir).glob("requests*.csv")) for r in read_requests(p)]
+    return sorted(rows, key=lambda r: r["ts"])
+
+
 def summarize_run(run_dir: Path, slo_ms: float = 300, interval_s: float = 15) -> dict:
     run_dir = Path(run_dir)
-    return summarize(read_requests(run_dir / "requests.csv"), read_events(run_dir / "events.jsonl"),
+    return summarize(read_run_requests(run_dir), read_events(run_dir / "events.jsonl"),
                      node_regions_from_json(run_dir / "nodes.json"), slo_ms=slo_ms, interval_s=interval_s)
 
 

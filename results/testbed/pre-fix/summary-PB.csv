@@ -1,0 +1,4 @@
+run,config,magnitude,duration_s,restricted_share,rep,requests,attainment,p95_ms,failed,rejected_no_dest,residency_violations,spend_inr,ceiling_inr,ceiling_breached,public_node_hours,attainment_per_100inr,attainment_restricted,attainment_internal,attainment_public
+PB_m2_d180_s0.3_r1,PB,2.0,180.0,0.3,1,38755,80.97,1278.5,355,0,0,20.81,120.0,False,0.158,389.0,88.39,70.19,85.42
+PB_m2_d180_s0.3_r2,PB,2.0,180.0,0.3,2,50361,94.19,309.1,0,0,62,46.35,120.0,False,0.338,203.22,97.96,92.61,92.58
+PB_m2_d180_s0.3_r3,PB,2.0,180.0,0.3,3,50373,95.41,295.2,0,0,126,47.57,120.0,False,0.346,200.58,95.63,95.66,94.96

@@ -1,0 +1,6 @@
+NAME               STATUS                     ROLES           AGE     VERSION        DESTINATION   REGION
+k3d-p11-agent-0    Ready                      <none>          3h46m   v1.35.5+k3s1   private       IN
+k3d-p11-agent-1    Ready,SchedulingDisabled   <none>          3h46m   v1.35.5+k3s1   pub-in        IN
+k3d-p11-agent-2    Ready,SchedulingDisabled   <none>          3h46m   v1.35.5+k3s1   pub-sg        non-IN
+k3d-p11-agent-3    Ready,SchedulingDisabled   <none>          3h46m   v1.35.5+k3s1   pub-us        non-IN
+k3d-p11-server-0   Ready                      control-plane   3h46m   v1.35.5+k3s1   private       IN

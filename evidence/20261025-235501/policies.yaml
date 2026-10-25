@@ -1,0 +1,84 @@
+apiVersion: v1
+items:
+- apiVersion: p11.burst/v1
+  kind: BurstPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"p11.burst/v1","kind":"BurstPolicy","metadata":{"annotations":{},"name":"campus-default","namespace":"default"},"spec":{"destinations":[{"name":"private","private":true,"region":"IN"},{"name":"pub-in","ratePerHourINR":1.8,"region":"IN"},{"name":"pub-sg","ratePerHourINR":1.4,"region":"non-IN"},{"name":"pub-us","ratePerHourINR":1,"region":"non-IN"}],"minLeaseHours":1,"monthlyCeilingINR":2000,"reserveINR":100,"residency":{"internal":["IN","non-IN"],"public":["IN","non-IN"],"restricted":["IN"]},"sloLatencyMs":300}}
+    creationTimestamp: "2026-10-25T20:03:49Z"
+    generation: 1
+    name: campus-default
+    namespace: default
+    resourceVersion: "586"
+    uid: 6c11c7af-32fd-4fe1-a140-305a551a6b5a
+  spec:
+    destinations:
+    - name: private
+      private: true
+      region: IN
+    - name: pub-in
+      ratePerHourINR: 1.8
+      region: IN
+    - name: pub-sg
+      ratePerHourINR: 1.4
+      region: non-IN
+    - name: pub-us
+      ratePerHourINR: 1
+      region: non-IN
+    minLeaseHours: 1
+    monthlyCeilingINR: 2000
+    reserveINR: 100
+    residency:
+      internal:
+      - IN
+      - non-IN
+      public:
+      - IN
+      - non-IN
+      restricted:
+      - IN
+    sloLatencyMs: 300
+- apiVersion: p11.burst/v1
+  kind: BurstPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"p11.burst/v1","kind":"BurstPolicy","metadata":{"annotations":{},"name":"experiment","namespace":"default"},"spec":{"billingPeriodHours":1,"destinations":[{"name":"private","private":true,"region":"IN"},{"name":"pub-in","ratePerHourINR":180,"region":"IN"},{"name":"pub-sg","ratePerHourINR":140,"region":"non-IN"},{"name":"pub-us","ratePerHourINR":100,"region":"non-IN"}],"minLeaseHours":0.1,"monthlyCeilingINR":120,"reserveINR":10,"residency":{"internal":["IN","non-IN"],"public":["IN","non-IN"],"restricted":["IN"]},"sloLatencyMs":300}}
+    creationTimestamp: "2026-10-25T20:03:49Z"
+    generation: 1
+    name: experiment
+    namespace: default
+    resourceVersion: "587"
+    uid: a901f80b-b8c2-470d-8a3b-0bc08f431aa6
+  spec:
+    billingPeriodHours: 1
+    destinations:
+    - name: private
+      private: true
+      region: IN
+    - name: pub-in
+      ratePerHourINR: 180
+      region: IN
+    - name: pub-sg
+      ratePerHourINR: 140
+      region: non-IN
+    - name: pub-us
+      ratePerHourINR: 100
+      region: non-IN
+    minLeaseHours: 0.1
+    monthlyCeilingINR: 120
+    reserveINR: 10
+    residency:
+      internal:
+      - IN
+      - non-IN
+      public:
+      - IN
+      - non-IN
+      restricted:
+      - IN
+    sloLatencyMs: 300
+kind: List
+metadata:
+  resourceVersion: ""

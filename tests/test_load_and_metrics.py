@@ -37,7 +37,7 @@ def test_summary_metrics():
         req(100, "records", "restricted", 0, ok=False),       # failed during a no-dest window
     ]
     events = [
-        {"ts": 0, "spent_inr": 0, "ceiling_inr": 120, "active": ["pub-far"], "rejections": []},
+        {"ts": 0, "spent_inr": 0, "ceiling_inr": 120, "active": ["pub-us"], "rejections": []},
         {"ts": 3600, "spent_inr": 50, "ceiling_inr": 120, "active": [],
          "rejections": [["p11-app/records", "residency"]]},
     ]

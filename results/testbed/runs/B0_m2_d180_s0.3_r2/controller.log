@@ -1,0 +1,5 @@
+2026-10-25 21:22:25,304 policyburst INFO started mode=noburst constraints=Constraints(residency=True, latency=True, cost=True)
+2026-10-25 21:22:25,883 policyburst.actuator INFO allowed p11-app/lms -> private
+2026-10-25 21:22:25,891 policyburst.actuator INFO allowed p11-app/records -> private
+2026-10-25 21:22:25,897 policyburst.actuator INFO allowed p11-app/static -> private
+2026-10-25 21:30:55,341 policyburst INFO stopped, spent=0.00 INR

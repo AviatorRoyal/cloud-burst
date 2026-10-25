@@ -89,6 +89,22 @@ class ClusterReader:
                   for n in private if n.metadata.name in usage]
         return sum(ratios) / len(ratios) if ratios else None
 
+    def requested_cpu_by_node(self) -> tuple[dict[str, float], dict[str, float]]:
+        """CPU requested by all running/pending pods per node, and by PolicyBurst-managed pods only."""
+        total: dict[str, float] = {}
+        managed: dict[str, float] = {}
+        pods = self.core.list_pod_for_all_namespaces(field_selector="status.phase!=Succeeded,status.phase!=Failed").items
+        for p in pods:
+            node = p.spec.node_name
+            if not node:
+                continue
+            req = sum(parse_cpu(c.resources.requests["cpu"]) for c in p.spec.containers
+                      if c.resources and c.resources.requests and "cpu" in c.resources.requests)
+            total[node] = total.get(node, 0.0) + req
+            if (p.metadata.labels or {}).get("p11.burst/managed") == "true":
+                managed[node] = managed.get(node, 0.0) + req
+        return total, managed
+
     def rtts(self, policy: Policy, nodes: dict[str, list], now: float) -> dict[str, float | None]:
         if now - self._probed_at >= self.probe_every_s:
             for d in policy.public:
@@ -103,6 +119,18 @@ class ClusterReader:
         wl = self.workloads()
         active = {d.name for d in policy.public
                   if any(not n.spec.unschedulable and node_ready(n) for n in nodes.get(d.name, []))}
+        total, managed = self.requested_cpu_by_node()
+        private_nodes = [n for d in policy.private for n in nodes.get(d.name, []) if not n.spec.unschedulable]
+        free = sum(parse_cpu(n.status.allocatable["cpu"]) - total.get(n.metadata.name, 0.0) for n in private_nodes)
+        dest_req = {d.name: sum(managed.get(n.metadata.name, 0.0) for n in nodes.get(d.name, [])) for d in policy.public}
         obs = Observation(now=now, workloads=[w for w, _ in wl], private_util=self.private_util(policy, nodes),
-                          active=active, rtts=self.rtts(policy, nodes, now), service_ms=self.service_ms)
+                          active=active, rtts=self.rtts(policy, nodes, now), service_ms=self.service_ms,
+                          private_free_cpu=max(0.0, free), dest_requested_cpu=dest_req)
+        for w, d in wl:
+            st = d.status
+            if (st.observed_generation or 0) < (d.metadata.generation or 0) or (st.updated_replicas or 0) < (st.replicas or 0):
+                obs.rolling.add(w.key)
+            ann = (d.spec.template.metadata.annotations or {}).get("p11.burst/allowed")
+            if ann is not None:
+                obs.current_allowed[w.key] = set(filter(None, ann.split(",")))
         return obs, nodes, {w.key: d for w, d in wl}

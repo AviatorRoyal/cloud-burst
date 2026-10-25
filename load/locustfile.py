@@ -26,10 +26,21 @@ SHARE = float(os.environ.get("RESTRICTED_SHARE", "0.3"))
 TIMEOUT_S = float(os.environ.get("REQUEST_TIMEOUT_S", "5"))
 
 _log_path = os.environ.get("REQUEST_LOG")
-_log_file = open(_log_path, "w", newline="", encoding="utf-8") if _log_path else None
-_log = csv.writer(_log_file) if _log_file else None
-if _log:
-    _log.writerow(["ts", "service", "data_class", "latency_ms", "ok", "node"])
+_logs: dict[int, tuple] = {}
+
+
+def _log_row(row):
+    """Per-process request log (opened lazily, so `locust --processes N` workers never share a file)."""
+    if not _log_path:
+        return
+    pid = os.getpid()
+    if pid not in _logs:
+        p = Path(_log_path)
+        f = open(p.with_name(f"{p.stem}.{pid}{p.suffix}"), "w", newline="", encoding="utf-8")
+        w = csv.writer(f)
+        w.writerow(["ts", "service", "data_class", "latency_ms", "ok", "node"])
+        _logs[pid] = (f, w)
+    _logs[pid][1].writerow(row)
 
 
 class AppUser(HttpUser):
@@ -46,8 +57,7 @@ class AppUser(HttpUser):
                 node = r.json().get("node", "")
         except Exception:
             pass
-        if _log:
-            _log.writerow([round(t0, 3), svc, CLASSES[svc], round((time.time() - t0) * 1000, 1), int(ok), node])
+        _log_row([round(t0, 3), svc, CLASSES[svc], round((time.time() - t0) * 1000, 1), int(ok), node])
 
     def records(self):
         self._hit("records")
@@ -81,5 +91,5 @@ class Shape(LoadTestShape):
 
 @events.quitting.add_listener
 def _close(environment, **_):
-    if _log_file:
-        _log_file.close()
+    for f, _ in _logs.values():
+        f.close()

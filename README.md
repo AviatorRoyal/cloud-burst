@@ -22,18 +22,42 @@ The **threshold baseline (B1)** is the same loop with every constraint off. **B0
 policyburst/   policy.py  feasibility.py  cost.py  decision.py  (pure logic, unit-tested)
                signals.py actuator.py main.py                    (Kubernetes I/O + loop)
 baselines/     threshold.py                                      (B1 entry point)
-deploy/        k3s/ scripts · crd/ · policy/ · app/ · controller/
+deploy/        k3s/ (cloud VMs) · k3d/ (single-machine testbed) · crd/ · policy/ · app/ · controller/
 load/          locustfile.py · shape.py (burst + ramp profiles)
-experiments/   run_matrix.py (configs × shapes × reps → results/)
-analysis/      metrics.py · plots.py
+experiments/   run_matrix.py (configs × shapes × reps on a real cluster → results/testbed/)
+sim/           cluster.py · run.py (trace-driven simulation driving the real controller code → results/sim/)
+analysis/      metrics.py · aggregate.py · plots.py
+evidence/      captured kubectl output from the testbed
 tests/         pytest suite (no cluster needed)
 ```
 
+The evaluation has two layers:
+
+- **Testbed:** a real 5-node k3s cluster (k3d on WSL2: 2 private nodes and 3 public nodes, 2 vCPU each, with
+  netem WAN delay on `pub-sg` and `pub-us`). It runs the baselines and PolicyBurst end to end with Locust.
+- **Simulation:** `sim/` runs the unchanged `Decider` and `CostMeter` against a 1-second model of the cluster
+  (HPA, scheduler, pod start-up, closed-loop Locust users, queueing). It covers the full 227-run matrix,
+  ablation and residency sweep, which would take days on the testbed.
+
 ## 1. Testbed (Review 1 evidence)
+
+### Option A: one machine (what the reported results use)
+
+On Linux or WSL2 with Docker and [k3d](https://k3d.io):
+
+```bash
+sudo ./deploy/k3d/create-local-testbed.sh          # cluster "p11", kubeconfig ./p11.kubeconfig
+export KUBECONFIG=$PWD/p11.kubeconfig
+sudo ./deploy/k3d/create-local-testbed.sh netem    # re-apply WAN delay after a host/WSL restart
+```
+
+On WSL2, keep a WSL session open while experiments run; WSL stops its VM when idle.
+
+### Option B: cloud VMs
 
 You need Ubuntu 22.04/24.04 machines: 1 private server, at least 1 private agent, and public VMs.
 `pub-in` is a free-tier VM in an Indian region (Oracle Cloud Always Free in Hyderabad/Mumbai, or AWS
-`ap-south-1`). `pub-far` stands in for a non-Indian region: either a second VM with added delay or a local VM
+`ap-south-1`). `pub-sg` (nearby, +40 ms) and `pub-us` (distant, +120 ms) stand in for foreign regions: VMs
 labelled `non-IN` with added delay. All nodes reach each other over Tailscale.
 
 ```bash
@@ -45,8 +69,10 @@ labelled `non-IN` with added delay. All nodes reach each other over Tailscale.
 K3S_URL=https://<server-ts-ip>:6443 K3S_TOKEN=<token> ./deploy/k3s/02-agent-private.sh
 # public nodes
 K3S_URL=... K3S_TOKEN=... ./deploy/k3s/03-agent-public.sh pub-in IN
-K3S_URL=... K3S_TOKEN=... ./deploy/k3s/03-agent-public.sh pub-far non-IN
-./deploy/k3s/04-netem-far.sh 120ms               # on pub-far only
+K3S_URL=... K3S_TOKEN=... ./deploy/k3s/03-agent-public.sh pub-sg non-IN
+K3S_URL=... K3S_TOKEN=... ./deploy/k3s/03-agent-public.sh pub-us non-IN
+./deploy/k3s/04-netem.sh 40ms                     # on pub-sg
+./deploy/k3s/04-netem.sh 120ms                    # on pub-us
 ```
 
 Then, on the server:
@@ -77,7 +103,15 @@ python experiments/run_matrix.py --target <ip> --capacity-users <N> --configs B0
 cat results/summary.csv
 ```
 
-## 4. Full evaluation (Review 2 and final)
+## 4. Simulation (full matrix in about 2 minutes)
+
+```bash
+python -m sim.run calibrate
+python -m sim.run all --capacity-users 220
+python analysis/aggregate.py results/sim/summary.csv results/sim/aggregate.json
+```
+
+## 5. Full evaluation on a cluster (Review 2 and final)
 
 ```bash
 # H1/H2: 4 configs × 3 magnitudes × 3 durations × 3 reps = 108 runs (several hours, resumable)
@@ -105,7 +139,7 @@ To run in-cluster instead, see `deploy/controller/`.
 
 ## Notes and threats to validity
 
-- Free-tier usage bills ₹0, so spend is **shadow-priced** at `ratePerHourINR`. `experiment.yaml` compresses a billing month into one hour (`billingPeriodHours: 1`) with rates scaled ~100×. Keep the pub-in/pub-far price ratio realistic.
-- `pub-far` is emulated with `tc netem` and a `non-IN` label. It is not a real foreign region.
+- Free-tier usage bills ₹0, so spend is **shadow-priced** at `ratePerHourINR`. `experiment.yaml` compresses a billing month into one hour (`billingPeriodHours: 1`) with rates scaled ~100×. Keep the price ratios between public destinations realistic.
+- `pub-sg` and `pub-us` are emulated with `tc netem` and a `non-IN` label. They are not real foreign regions.
 - Residency is enforced at pod placement. Logs, backups and the control plane are out of scope.
 - Rejection attribution joins failed or late requests with the controller's no-destination events within ±1 interval. It is an estimate.

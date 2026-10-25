@@ -72,7 +72,7 @@ def run_one(a, cfg: str, mag: float, dur: float, share: float, rep: int, out_roo
                BURST_GAP_S=str(a.gap), WARMUP_S=str(a.warmup), COOLDOWN_S=str(a.cooldown),
                RESTRICTED_SHARE=str(share), REQUEST_LOG=str(run_dir / "requests.csv"))
     loc_cmd = ["locust", "-f", str(ROOT / "load" / "locustfile.py"), "--headless", "--only-summary",
-               "--csv", str(run_dir / "locust")]
+               "--csv", str(run_dir / "locust"), "--processes", str(a.locust_processes)]
     if a.dry_run:
         print("$", " ".join(ctl_cmd))
         reset_app(True)
@@ -111,7 +111,8 @@ def calibrate(a):
     """Ramp load with no bursting; capacity = highest step whose attainment stays >= 95%."""
     run_dir = Path(a.out) / "calibration"
     env = dict(os.environ, TARGET=a.target, SHAPE="ramp", RESTRICTED_SHARE="0.3", REQUEST_LOG=str(run_dir / "requests.csv"))
-    cmd = ["locust", "-f", str(ROOT / "load" / "locustfile.py"), "--headless", "--only-summary"]
+    cmd = ["locust", "-f", str(ROOT / "load" / "locustfile.py"), "--headless", "--only-summary",
+           "--processes", str(a.locust_processes)]
     if a.dry_run:
         print("$ SHAPE=ramp", " ".join(cmd))
         return
@@ -125,20 +126,27 @@ def calibrate(a):
     finally:
         ctl.terminate()
         ctl.wait(timeout=60)
-    from analysis.metrics import read_requests
+    from analysis.metrics import read_run_requests
     from load.shape import RampParams
-    reqs, rp = read_requests(run_dir / "requests.csv"), RampParams.from_env()
+    reqs, rp = read_run_requests(run_dir), RampParams.from_env()
     t0 = min(r["ts"] for r in reqs)
-    best = 0
+    best, rows = 0, []
     for step in itertools.count():
         rs = [r for r in reqs if step * rp.step_s <= r["ts"] - t0 < (step + 1) * rp.step_s]
         if not rs:
             break
         att = 100 * sum(1 for r in rs if r["ok"] and r["latency_ms"] <= a.slo) / len(rs)
         users = rp.start + step * rp.step
+        if users > rp.max_users:  # requests still in flight after the ramp ended
+            break
         print(f"users={users:4d} attainment={att:5.1f}%")
+        rows.append({"users": users, "requests": len(rs), "attainment": round(att, 2)})
         if att >= 95:
             best = users
+    with open(Path(a.out) / "calibration.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["users", "requests", "attainment"])
+        w.writeheader()
+        w.writerows(rows)
     print(f"\ncapacity_users = {best}   (pass --capacity-users {best})")
 
 
@@ -162,6 +170,7 @@ def main():
     p.add_argument("--burst-after", type=float, default=30)
     p.add_argument("--idle-after", type=float, default=120)
     p.add_argument("--slo", type=float, default=300)
+    p.add_argument("--locust-processes", type=int, default=1, help="Locust worker processes (Linux)")
     p.add_argument("--out", default=str(ROOT / "results"))
     p.add_argument("--force", action="store_true", help="re-run runs that already have a summary")
     p.add_argument("--calibrate", action="store_true")

@@ -1,0 +1,22 @@
+{
+  "run": "B0_m2_d180_s0.3_r3",
+  "config": "B0",
+  "magnitude": 2.0,
+  "duration_s": 180.0,
+  "restricted_share": 0.3,
+  "rep": 3,
+  "requests": 34377,
+  "attainment": 64.98,
+  "p95_ms": 1807.8,
+  "failed": 240,
+  "rejected_no_dest": 0,
+  "residency_violations": 0,
+  "spend_inr": 0.0,
+  "ceiling_inr": 120.0,
+  "ceiling_breached": false,
+  "public_node_hours": 0.0,
+  "attainment_per_100inr": null,
+  "attainment_restricted": 61.05,
+  "attainment_internal": 76.49,
+  "attainment_public": 56.92
+}

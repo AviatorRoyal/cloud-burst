@@ -1,0 +1,4 @@
+POD                       STATUS    NODE               IP
+lms-65bbb485c-h4qr2       Running   k3d-p11-agent-0    10.42.0.110
+records-57cbbc7df-h8wbc   Running   k3d-p11-agent-0    10.42.0.115
+static-598f6bc747-wgss6   Running   k3d-p11-server-0   10.42.3.115

@@ -1,0 +1,3480 @@
+{
+ "source": "results/sim/summary.csv",
+ "runs": 227,
+ "by_magnitude_180s": [
+  {
+   "config": "B0",
+   "magnitude": "1.5",
+   "attainment": {
+    "mean": 45.593,
+    "ci": 1.243,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1141.667,
+    "ci": 7.167,
+    "n": 3
+   },
+   "failed": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "requests": {
+    "mean": 118168.333,
+    "ci": 723.552,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": null,
+   "attainment_restricted": {
+    "mean": 45.783,
+    "ci": 2.965,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 45.7,
+    "ci": 1.763,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 45.297,
+    "ci": 1.772,
+    "n": 3
+   }
+  },
+  {
+   "config": "B0",
+   "magnitude": "2",
+   "attainment": {
+    "mean": 34.71,
+    "ci": 7.461,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2600.0,
+    "ci": 21.5,
+    "n": 3
+   },
+   "failed": {
+    "mean": 12.333,
+    "ci": 13.673,
+    "n": 3
+   },
+   "requests": {
+    "mean": 128685.333,
+    "ci": 3692.788,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": null,
+   "attainment_restricted": {
+    "mean": 44.007,
+    "ci": 3.572,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 35.67,
+    "ci": 26.381,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 23.807,
+    "ci": 1.818,
+    "n": 3
+   }
+  },
+  {
+   "config": "B0",
+   "magnitude": "2.5",
+   "attainment": {
+    "mean": 28.213,
+    "ci": 7.213,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 3233.333,
+    "ci": 746.469,
+    "n": 3
+   },
+   "failed": {
+    "mean": 225.0,
+    "ci": 321.62,
+    "n": 3
+   },
+   "requests": {
+    "mean": 141986.667,
+    "ci": 3487.539,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": null,
+   "attainment_restricted": {
+    "mean": 31.313,
+    "ci": 15.275,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 28.637,
+    "ci": 19.715,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 24.43,
+    "ci": 18.209,
+    "n": 3
+   }
+  },
+  {
+   "config": "B0",
+   "magnitude": "3",
+   "attainment": {
+    "mean": 19.337,
+    "ci": 10.478,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 3955.0,
+    "ci": 356.105,
+    "n": 3
+   },
+   "failed": {
+    "mean": 1530.667,
+    "ci": 194.886,
+    "n": 3
+   },
+   "requests": {
+    "mean": 144197.667,
+    "ci": 301.556,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": null,
+   "attainment_restricted": {
+    "mean": 20.933,
+    "ci": 19.88,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 18.233,
+    "ci": 6.486,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 18.717,
+    "ci": 4.508,
+    "n": 3
+   }
+  },
+  {
+   "config": "B0",
+   "magnitude": "4",
+   "attainment": {
+    "mean": 16.833,
+    "ci": 0.08,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 4376.667,
+    "ci": 18.961,
+    "n": 3
+   },
+   "failed": {
+    "mean": 5820.0,
+    "ci": 31.107,
+    "n": 3
+   },
+   "requests": {
+    "mean": 144563.667,
+    "ci": 396.085,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": null,
+   "attainment_restricted": {
+    "mean": 13.86,
+    "ci": 0.336,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 16.813,
+    "ci": 1.517,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 21.01,
+    "ci": 0.756,
+    "n": 3
+   }
+  },
+  {
+   "config": "B1",
+   "magnitude": "1.5",
+   "attainment": {
+    "mean": 75.457,
+    "ci": 1.326,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 863.333,
+    "ci": 14.333,
+    "n": 3
+   },
+   "failed": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "requests": {
+    "mean": 134062.333,
+    "ci": 1200.846,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 7510.333,
+    "ci": 1234.473,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 32.58,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.238,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 231.593,
+    "ci": 4.071,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 84.903,
+    "ci": 7.455,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 72.177,
+    "ci": 6.911,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 70.653,
+    "ci": 2.351,
+    "n": 3
+   }
+  },
+  {
+   "config": "B1",
+   "magnitude": "2",
+   "attainment": {
+    "mean": 66.69,
+    "ci": 10.374,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1670.0,
+    "ci": 290.316,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2.333,
+    "ci": 1.433,
+    "n": 3
+   },
+   "requests": {
+    "mean": 160854.0,
+    "ci": 356.701,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 17493.333,
+    "ci": 2094.664,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 32.58,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.238,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 204.673,
+    "ci": 31.842,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 62.61,
+    "ci": 1.247,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 71.75,
+    "ci": 16.376,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 65.25,
+    "ci": 14.795,
+    "n": 3
+   }
+  },
+  {
+   "config": "B1",
+   "magnitude": "2.5",
+   "attainment": {
+    "mean": 54.91,
+    "ci": 18.375,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2450.0,
+    "ci": 1009.89,
+    "n": 3
+   },
+   "failed": {
+    "mean": 94.333,
+    "ci": 113.668,
+    "n": 3
+   },
+   "requests": {
+    "mean": 180034.0,
+    "ci": 19153.226,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 15890.667,
+    "ci": 5687.638,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 31.413,
+    "ci": 5.017,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.23,
+    "ci": 0.036,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 174.233,
+    "ci": 32.064,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 52.027,
+    "ci": 6.921,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 52.63,
+    "ci": 28.329,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 59.713,
+    "ci": 19.415,
+    "n": 3
+   }
+  },
+  {
+   "config": "B1",
+   "magnitude": "3",
+   "attainment": {
+    "mean": 36.003,
+    "ci": 2.967,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2856.667,
+    "ci": 296.184,
+    "n": 3
+   },
+   "failed": {
+    "mean": 398.667,
+    "ci": 156.549,
+    "n": 3
+   },
+   "requests": {
+    "mean": 199082.667,
+    "ci": 2635.682,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 20280.667,
+    "ci": 3732.255,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 32.58,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.238,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 110.493,
+    "ci": 9.131,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 40.737,
+    "ci": 4.286,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 30.87,
+    "ci": 1.862,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 36.767,
+    "ci": 10.718,
+    "n": 3
+   }
+  },
+  {
+   "config": "B1",
+   "magnitude": "4",
+   "attainment": {
+    "mean": 30.13,
+    "ci": 0.131,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 3401.667,
+    "ci": 103.359,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2301.0,
+    "ci": 187.252,
+    "n": 3
+   },
+   "requests": {
+    "mean": 216238.0,
+    "ci": 1241.906,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 26591.333,
+    "ci": 939.572,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 32.58,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.238,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 92.467,
+    "ci": 0.39,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 29.817,
+    "ci": 2.998,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 32.583,
+    "ci": 1.641,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 27.783,
+    "ci": 0.986,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "magnitude": "1.5",
+   "attainment": {
+    "mean": 86.593,
+    "ci": 0.482,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 863.333,
+    "ci": 14.333,
+    "n": 3
+   },
+   "failed": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "requests": {
+    "mean": 133944.0,
+    "ci": 708.618,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 26.61,
+    "ci": 0.473,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.167,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 325.413,
+    "ci": 5.302,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 86.69,
+    "ci": 1.009,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 86.557,
+    "ci": 0.426,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 86.547,
+    "ci": 0.756,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "magnitude": "2",
+   "attainment": {
+    "mean": 76.187,
+    "ci": 5.315,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1681.667,
+    "ci": 267.769,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2.333,
+    "ci": 1.433,
+    "n": 3
+   },
+   "requests": {
+    "mean": 161079.667,
+    "ci": 1240.512,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 30.72,
+    "ci": 8.617,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.206,
+    "ci": 0.085,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 250.753,
+    "ci": 91.144,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 80.553,
+    "ci": 4.222,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 75.177,
+    "ci": 9.123,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 73.22,
+    "ci": 5.746,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "magnitude": "2.5",
+   "attainment": {
+    "mean": 43.187,
+    "ci": 10.565,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2473.333,
+    "ci": 995.006,
+    "n": 3
+   },
+   "failed": {
+    "mean": 100.333,
+    "ci": 101.098,
+    "n": 3
+   },
+   "requests": {
+    "mean": 176150.0,
+    "ci": 14709.17,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 28.747,
+    "ci": 10.466,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.191,
+    "ci": 0.102,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 150.89,
+    "ci": 16.966,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 45.727,
+    "ci": 21.99,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 46.097,
+    "ci": 12.412,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 37.463,
+    "ci": 10.954,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "magnitude": "3",
+   "attainment": {
+    "mean": 35.23,
+    "ci": 1.966,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2898.333,
+    "ci": 272.333,
+    "n": 3
+   },
+   "failed": {
+    "mean": 406.333,
+    "ci": 153.367,
+    "n": 3
+   },
+   "requests": {
+    "mean": 189181.667,
+    "ci": 1664.823,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 29.61,
+    "ci": 6.322,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.195,
+    "ci": 0.063,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 119.487,
+    "ci": 22.986,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 38.237,
+    "ci": 4.733,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 35.11,
+    "ci": 0.919,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 32.47,
+    "ci": 1.085,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "magnitude": "4",
+   "attainment": {
+    "mean": 29.59,
+    "ci": 1.564,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 3625.0,
+    "ci": 229.893,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2722.667,
+    "ci": 481.103,
+    "n": 3
+   },
+   "requests": {
+    "mean": 207830.667,
+    "ci": 11983.883,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 30.167,
+    "ci": 8.279,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.2,
+    "ci": 0.082,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 98.75,
+    "ci": 22.757,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 34.313,
+    "ci": 1.139,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 32.547,
+    "ci": 1.972,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 21.08,
+    "ci": 8.217,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "magnitude": "1.5",
+   "attainment": {
+    "mean": 86.577,
+    "ci": 0.455,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 863.333,
+    "ci": 14.333,
+    "n": 3
+   },
+   "failed": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "requests": {
+    "mean": 134094.667,
+    "ci": 480.609,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 1178.333,
+    "ci": 5066.833,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 26.5,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.167,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 326.707,
+    "ci": 1.732,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 86.653,
+    "ci": 1.07,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 86.547,
+    "ci": 0.386,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 86.54,
+    "ci": 0.738,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "magnitude": "2",
+   "attainment": {
+    "mean": 70.523,
+    "ci": 13.387,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1776.667,
+    "ci": 334.538,
+    "n": 3
+   },
+   "failed": {
+    "mean": 7.667,
+    "ci": 22.251,
+    "n": 3
+   },
+   "requests": {
+    "mean": 158782.0,
+    "ci": 10380.954,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 14506.0,
+    "ci": 8949.821,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 29.637,
+    "ci": 7.559,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.202,
+    "ci": 0.088,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 239.313,
+    "ci": 64.575,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 76.423,
+    "ci": 9.137,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 72.493,
+    "ci": 10.976,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 63.153,
+    "ci": 26.06,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "magnitude": "2.5",
+   "attainment": {
+    "mean": 42.043,
+    "ci": 13.671,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2468.333,
+    "ci": 991.282,
+    "n": 3
+   },
+   "failed": {
+    "mean": 94.333,
+    "ci": 113.668,
+    "n": 3
+   },
+   "requests": {
+    "mean": 175391.333,
+    "ci": 15106.127,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 16732.333,
+    "ci": 12407.914,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 28.863,
+    "ci": 8.761,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.196,
+    "ci": 0.092,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 145.787,
+    "ci": 26.526,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 46.827,
+    "ci": 27.017,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 42.56,
+    "ci": 16.15,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 36.62,
+    "ci": 13.806,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "magnitude": "3",
+   "attainment": {
+    "mean": 36.797,
+    "ci": 7.62,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2900.0,
+    "ci": 292.695,
+    "n": 3
+   },
+   "failed": {
+    "mean": 399.333,
+    "ci": 164.121,
+    "n": 3
+   },
+   "requests": {
+    "mean": 187493.333,
+    "ci": 3718.305,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 22285.0,
+    "ci": 5148.597,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 30.307,
+    "ci": 8.372,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.207,
+    "ci": 0.091,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 121.887,
+    "ci": 22.053,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 42.36,
+    "ci": 21.742,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 34.72,
+    "ci": 3.29,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 33.19,
+    "ci": 3.804,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "magnitude": "4",
+   "attainment": {
+    "mean": 30.823,
+    "ci": 2.372,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 3598.333,
+    "ci": 182.996,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2577.667,
+    "ci": 119.716,
+    "n": 3
+   },
+   "requests": {
+    "mean": 206227.0,
+    "ci": 16099.232,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 17691.667,
+    "ci": 5645.104,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 28.723,
+    "ci": 9.56,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.189,
+    "ci": 0.095,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 108.247,
+    "ci": 25.811,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 35.8,
+    "ci": 0.882,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 33.81,
+    "ci": 0.507,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 21.283,
+    "ci": 8.185,
+    "n": 3
+   }
+  }
+ ],
+ "by_duration_2x": [
+  {
+   "config": "B0",
+   "duration_s": "60",
+   "attainment": {
+    "mean": 51.48,
+    "ci": 4.517,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2366.667,
+    "ci": 348.082,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2.0,
+    "ci": 2.483,
+    "n": 3
+   },
+   "requests": {
+    "mean": 56192.667,
+    "ci": 637.843,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": null,
+   "attainment_restricted": {
+    "mean": 58.23,
+    "ci": 0.78,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 48.89,
+    "ci": 8.231,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 47.61,
+    "ci": 4.482,
+    "n": 3
+   }
+  },
+  {
+   "config": "B0",
+   "duration_s": "180",
+   "attainment": {
+    "mean": 34.71,
+    "ci": 7.461,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2600.0,
+    "ci": 21.5,
+    "n": 3
+   },
+   "failed": {
+    "mean": 12.333,
+    "ci": 13.673,
+    "n": 3
+   },
+   "requests": {
+    "mean": 128685.333,
+    "ci": 3692.788,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": null,
+   "attainment_restricted": {
+    "mean": 44.007,
+    "ci": 3.572,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 35.67,
+    "ci": 26.381,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 23.807,
+    "ci": 1.818,
+    "n": 3
+   }
+  },
+  {
+   "config": "B0",
+   "duration_s": "300",
+   "attainment": {
+    "mean": 31.307,
+    "ci": 0.465,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2620.0,
+    "ci": 310.077,
+    "n": 3
+   },
+   "failed": {
+    "mean": 34.333,
+    "ci": 45.122,
+    "n": 3
+   },
+   "requests": {
+    "mean": 201649.333,
+    "ci": 737.064,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": null,
+   "attainment_restricted": {
+    "mean": 39.453,
+    "ci": 2.12,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 36.88,
+    "ci": 4.218,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 16.443,
+    "ci": 3.004,
+    "n": 3
+   }
+  },
+  {
+   "config": "B1",
+   "duration_s": "60",
+   "attainment": {
+    "mean": 49.277,
+    "ci": 2.373,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2248.333,
+    "ci": 265.457,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2.0,
+    "ci": 2.483,
+    "n": 3
+   },
+   "requests": {
+    "mean": 57521.667,
+    "ci": 499.407,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 3149.0,
+    "ci": 261.994,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 18.58,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.138,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 265.183,
+    "ci": 12.783,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 53.41,
+    "ci": 1.739,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 48.017,
+    "ci": 6.043,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 46.567,
+    "ci": 3.153,
+    "n": 3
+   }
+  },
+  {
+   "config": "B1",
+   "duration_s": "180",
+   "attainment": {
+    "mean": 66.69,
+    "ci": 10.374,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1670.0,
+    "ci": 290.316,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2.333,
+    "ci": 1.433,
+    "n": 3
+   },
+   "requests": {
+    "mean": 160854.0,
+    "ci": 356.701,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 17493.333,
+    "ci": 2094.664,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 32.58,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.238,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 204.673,
+    "ci": 31.842,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 62.61,
+    "ci": 1.247,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 71.75,
+    "ci": 16.376,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 65.25,
+    "ci": 14.795,
+    "n": 3
+   }
+  },
+  {
+   "config": "B1",
+   "duration_s": "300",
+   "attainment": {
+    "mean": 77.393,
+    "ci": 0.67,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1323.333,
+    "ci": 124.337,
+    "n": 3
+   },
+   "failed": {
+    "mean": 4.667,
+    "ci": 1.433,
+    "n": 3
+   },
+   "requests": {
+    "mean": 266432.667,
+    "ci": 1438.82,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 32026.333,
+    "ci": 4746.289,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 46.58,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.338,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 166.14,
+    "ci": 1.452,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 67.147,
+    "ci": 1.973,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 83.8,
+    "ci": 5.523,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 80.05,
+    "ci": 2.316,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "duration_s": "60",
+   "attainment": {
+    "mean": 53.81,
+    "ci": 3.302,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2250.0,
+    "ci": 258.298,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2.0,
+    "ci": 2.483,
+    "n": 3
+   },
+   "requests": {
+    "mean": 57558.0,
+    "ci": 63.828,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 16.17,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.1,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 332.827,
+    "ci": 20.401,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 60.543,
+    "ci": 1.372,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 50.257,
+    "ci": 3.931,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 50.923,
+    "ci": 7.65,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "duration_s": "180",
+   "attainment": {
+    "mean": 76.187,
+    "ci": 5.315,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1681.667,
+    "ci": 267.769,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2.333,
+    "ci": 1.433,
+    "n": 3
+   },
+   "requests": {
+    "mean": 161079.667,
+    "ci": 1240.512,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 30.72,
+    "ci": 8.617,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.206,
+    "ci": 0.085,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 250.753,
+    "ci": 91.144,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 80.553,
+    "ci": 4.222,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 75.177,
+    "ci": 9.123,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 73.22,
+    "ci": 5.746,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "duration_s": "300",
+   "attainment": {
+    "mean": 82.693,
+    "ci": 3.443,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1336.667,
+    "ci": 93.99,
+    "n": 3
+   },
+   "failed": {
+    "mean": 4.667,
+    "ci": 1.433,
+    "n": 3
+   },
+   "requests": {
+    "mean": 266061.0,
+    "ci": 2113.512,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 46.943,
+    "ci": 2.394,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.328,
+    "ci": 0.023,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 176.17,
+    "ci": 5.924,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 89.28,
+    "ci": 0.043,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 79.95,
+    "ci": 3.508,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 79.603,
+    "ci": 6.686,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "duration_s": "60",
+   "attainment": {
+    "mean": 53.337,
+    "ci": 3.857,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 2246.667,
+    "ci": 262.245,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2.0,
+    "ci": 2.483,
+    "n": 3
+   },
+   "requests": {
+    "mean": 57666.333,
+    "ci": 134.619,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 2537.667,
+    "ci": 696.823,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 15.83,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.1,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 336.86,
+    "ci": 24.336,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 60.24,
+    "ci": 1.86,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 50.003,
+    "ci": 4.498,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 50.057,
+    "ci": 6.81,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "duration_s": "180",
+   "attainment": {
+    "mean": 70.523,
+    "ci": 13.387,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1776.667,
+    "ci": 334.538,
+    "n": 3
+   },
+   "failed": {
+    "mean": 7.667,
+    "ci": 22.251,
+    "n": 3
+   },
+   "requests": {
+    "mean": 158782.0,
+    "ci": 10380.954,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 14506.0,
+    "ci": 8949.821,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 29.637,
+    "ci": 7.559,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.202,
+    "ci": 0.088,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 239.313,
+    "ci": 64.575,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 76.423,
+    "ci": 9.137,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 72.493,
+    "ci": 10.976,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 63.153,
+    "ci": 26.06,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "duration_s": "300",
+   "attainment": {
+    "mean": 84.843,
+    "ci": 5.35,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1320.0,
+    "ci": 74.478,
+    "n": 3
+   },
+   "failed": {
+    "mean": 4.667,
+    "ci": 1.433,
+    "n": 3
+   },
+   "requests": {
+    "mean": 265597.667,
+    "ci": 1702.178,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 26982.0,
+    "ci": 25254.859,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 40.86,
+    "ci": 12.469,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.274,
+    "ci": 0.14,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 210.043,
+    "ci": 72.854,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 85.11,
+    "ci": 15.462,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 86.13,
+    "ci": 0.433,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 83.28,
+    "ci": 3.548,
+    "n": 3
+   }
+  }
+ ],
+ "matrix_overall": [
+  {
+   "config": "B0",
+   "attainment": {
+    "mean": 33.421,
+    "ci": 4.253,
+    "n": 45
+   },
+   "p95_ms": {
+    "mean": 3037.889,
+    "ci": 332.984,
+    "n": 45
+   },
+   "failed": {
+    "mean": 1535.867,
+    "ci": 772.0,
+    "n": 45
+   },
+   "requests": {
+    "mean": 135294.111,
+    "ci": 18972.739,
+    "n": 45
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "spend_inr": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "public_node_hours": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "attainment_per_100inr": null,
+   "attainment_restricted": {
+    "mean": 35.47,
+    "ci": 4.416,
+    "n": 45
+   },
+   "attainment_internal": {
+    "mean": 33.023,
+    "ci": 4.552,
+    "n": 45
+   },
+   "attainment_public": {
+    "mean": 31.776,
+    "ci": 4.475,
+    "n": 45
+   }
+  },
+  {
+   "config": "B1",
+   "attainment": {
+    "mean": 51.744,
+    "ci": 4.967,
+    "n": 45
+   },
+   "p95_ms": {
+    "mean": 2337.889,
+    "ci": 293.218,
+    "n": 45
+   },
+   "failed": {
+    "mean": 543.8,
+    "ci": 250.956,
+    "n": 45
+   },
+   "requests": {
+    "mean": 180074.267,
+    "ci": 31519.879,
+    "n": 45
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "residency_violations": {
+    "mean": 17349.667,
+    "ci": 4166.852,
+    "n": 45
+   },
+   "spend_inr": {
+    "mean": 31.686,
+    "ci": 3.569,
+    "n": 45
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "public_node_hours": {
+    "mean": 0.232,
+    "ci": 0.025,
+    "n": 45
+   },
+   "attainment_per_100inr": {
+    "mean": 191.413,
+    "ci": 28.063,
+    "n": 45
+   },
+   "attainment_restricted": {
+    "mean": 53.029,
+    "ci": 5.418,
+    "n": 45
+   },
+   "attainment_internal": {
+    "mean": 51.063,
+    "ci": 5.293,
+    "n": 45
+   },
+   "attainment_public": {
+    "mean": 51.247,
+    "ci": 4.845,
+    "n": 45
+   }
+  },
+  {
+   "config": "PB",
+   "attainment": {
+    "mean": 53.345,
+    "ci": 6.164,
+    "n": 45
+   },
+   "p95_ms": {
+    "mean": 2395.667,
+    "ci": 305.532,
+    "n": 45
+   },
+   "failed": {
+    "mean": 610.222,
+    "ci": 291.18,
+    "n": 45
+   },
+   "requests": {
+    "mean": 174507.133,
+    "ci": 29459.681,
+    "n": 45
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "spend_inr": {
+    "mean": 29.202,
+    "ci": 3.293,
+    "n": 45
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "public_node_hours": {
+    "mean": 0.193,
+    "ci": 0.024,
+    "n": 45
+   },
+   "attainment_per_100inr": {
+    "mean": 211.158,
+    "ci": 31.003,
+    "n": 45
+   },
+   "attainment_restricted": {
+    "mean": 55.731,
+    "ci": 6.207,
+    "n": 45
+   },
+   "attainment_internal": {
+    "mean": 53.88,
+    "ci": 5.879,
+    "n": 45
+   },
+   "attainment_public": {
+    "mean": 50.352,
+    "ci": 6.713,
+    "n": 45
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "attainment": {
+    "mean": 53.493,
+    "ci": 6.03,
+    "n": 45
+   },
+   "p95_ms": {
+    "mean": 2412.0,
+    "ci": 307.205,
+    "n": 45
+   },
+   "failed": {
+    "mean": 615.889,
+    "ci": 298.291,
+    "n": 45
+   },
+   "requests": {
+    "mean": 173075.0,
+    "ci": 28918.218,
+    "n": 45
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "residency_violations": {
+    "mean": 14585.156,
+    "ci": 4169.922,
+    "n": 45
+   },
+   "spend_inr": {
+    "mean": 28.559,
+    "ci": 3.192,
+    "n": 45
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 45
+   },
+   "public_node_hours": {
+    "mean": 0.191,
+    "ci": 0.023,
+    "n": 45
+   },
+   "attainment_per_100inr": {
+    "mean": 216.118,
+    "ci": 30.518,
+    "n": 45
+   },
+   "attainment_restricted": {
+    "mean": 56.294,
+    "ci": 5.859,
+    "n": 45
+   },
+   "attainment_internal": {
+    "mean": 53.584,
+    "ci": 6.104,
+    "n": 45
+   },
+   "attainment_public": {
+    "mean": 50.258,
+    "ci": 6.656,
+    "n": 45
+   }
+  }
+ ],
+ "ablation": [
+  {
+   "config": "B1",
+   "attainment": {
+    "mean": 85.36,
+    "ci": 1.574,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 511.667,
+    "ci": 200.667,
+    "n": 3
+   },
+   "failed": {
+    "mean": 3.0,
+    "ci": 2.483,
+    "n": 3
+   },
+   "requests": {
+    "mean": 887640.0,
+    "ci": 11622.946,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 108012.0,
+    "ci": 29927.55,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 255.413,
+    "ci": 5.017,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 1.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 1.829,
+    "ci": 0.037,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 33.423,
+    "ci": 0.16,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 72.973,
+    "ci": 3.384,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 90.24,
+    "ci": 11.545,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 91.187,
+    "ci": 6.599,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "attainment": {
+    "mean": 65.86,
+    "ci": 10.212,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1781.667,
+    "ci": 773.436,
+    "n": 3
+   },
+   "failed": {
+    "mean": 24.333,
+    "ci": 89.592,
+    "n": 3
+   },
+   "requests": {
+    "mean": 773430.667,
+    "ci": 15958.829,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 194031.667,
+    "ci": 20666.283,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 109.307,
+    "ci": 0.789,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.76,
+    "ci": 0.033,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 60.25,
+    "ci": 9.252,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 71.423,
+    "ci": 6.029,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 64.327,
+    "ci": 21.028,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 62.327,
+    "ci": 13.339,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noCost",
+   "attainment": {
+    "mean": 88.773,
+    "ci": 23.47,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 598.333,
+    "ci": 702.443,
+    "n": 3
+   },
+   "failed": {
+    "mean": 3.0,
+    "ci": 2.483,
+    "n": 3
+   },
+   "requests": {
+    "mean": 888876.667,
+    "ci": 8485.024,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 251.057,
+    "ci": 4.989,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 1.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 1.772,
+    "ci": 0.063,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 35.343,
+    "ci": 8.824,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 96.02,
+    "ci": 2.432,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 85.05,
+    "ci": 38.276,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 86.197,
+    "ci": 30.214,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noLat",
+   "attainment": {
+    "mean": 60.06,
+    "ci": 2.118,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1838.333,
+    "ci": 852.11,
+    "n": 3
+   },
+   "failed": {
+    "mean": 20.667,
+    "ci": 71.71,
+    "n": 3
+   },
+   "requests": {
+    "mean": 759200.333,
+    "ci": 10168.592,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 215838.333,
+    "ci": 30899.456,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 108.83,
+    "ci": 0.0,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.775,
+    "ci": 0.0,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 55.183,
+    "ci": 1.949,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 68.043,
+    "ci": 1.469,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 59.427,
+    "ci": 5.71,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 53.477,
+    "ci": 3.373,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "attainment": {
+    "mean": 64.44,
+    "ci": 11.99,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1798.333,
+    "ci": 819.291,
+    "n": 3
+   },
+   "failed": {
+    "mean": 17.333,
+    "ci": 59.496,
+    "n": 3
+   },
+   "requests": {
+    "mean": 766706.333,
+    "ci": 12646.231,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 202766.0,
+    "ci": 25676.706,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 57185.667,
+    "ci": 6414.941,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 108.86,
+    "ci": 1.204,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.766,
+    "ci": 0.011,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 59.187,
+    "ci": 10.514,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 69.487,
+    "ci": 0.756,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 63.6,
+    "ci": 21.095,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 60.627,
+    "ci": 17.325,
+    "n": 3
+   }
+  }
+ ],
+ "sweep": [
+  {
+   "config": "PB",
+   "restricted_share": "0.0",
+   "attainment": {
+    "mean": 76.05,
+    "ci": 9.487,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1468.333,
+    "ci": 68.366,
+    "n": 3
+   },
+   "failed": {
+    "mean": 1.0,
+    "ci": 2.483,
+    "n": 3
+   },
+   "requests": {
+    "mean": 160198.667,
+    "ci": 316.533,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 28.64,
+    "ci": 9.202,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.191,
+    "ci": 0.102,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 269.42,
+    "ci": 111.275,
+    "n": 3
+   },
+   "attainment_restricted": null,
+   "attainment_internal": {
+    "mean": 77.553,
+    "ci": 9.19,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 74.493,
+    "ci": 9.917,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "restricted_share": "0.1",
+   "attainment": {
+    "mean": 76.24,
+    "ci": 8.168,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1625.0,
+    "ci": 185.366,
+    "n": 3
+   },
+   "failed": {
+    "mean": 3.667,
+    "ci": 8.719,
+    "n": 3
+   },
+   "requests": {
+    "mean": 160787.0,
+    "ci": 1380.367,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 28.943,
+    "ci": 5.875,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.189,
+    "ci": 0.063,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 265.067,
+    "ci": 77.098,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 79.537,
+    "ci": 4.155,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 78.323,
+    "ci": 7.775,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 73.257,
+    "ci": 9.811,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "restricted_share": "0.3",
+   "attainment": {
+    "mean": 76.187,
+    "ci": 5.315,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1681.667,
+    "ci": 267.769,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2.333,
+    "ci": 1.433,
+    "n": 3
+   },
+   "requests": {
+    "mean": 161079.667,
+    "ci": 1240.512,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 30.72,
+    "ci": 8.617,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.206,
+    "ci": 0.085,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 250.753,
+    "ci": 91.144,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 80.553,
+    "ci": 4.222,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 75.177,
+    "ci": 9.123,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 73.22,
+    "ci": 5.746,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "restricted_share": "0.5",
+   "attainment": {
+    "mean": 69.04,
+    "ci": 34.726,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1543.333,
+    "ci": 177.438,
+    "n": 3
+   },
+   "failed": {
+    "mean": 9.667,
+    "ci": 9.399,
+    "n": 3
+   },
+   "requests": {
+    "mean": 158750.333,
+    "ci": 10255.899,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 26.387,
+    "ci": 1.906,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.164,
+    "ci": 0.013,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 260.717,
+    "ci": 114.622,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 64.097,
+    "ci": 54.136,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 73.983,
+    "ci": 13.618,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 73.147,
+    "ci": 20.403,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB",
+   "restricted_share": "0.7",
+   "attainment": {
+    "mean": 44.113,
+    "ci": 9.577,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1706.667,
+    "ci": 424.47,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2.667,
+    "ci": 3.792,
+    "n": 3
+   },
+   "requests": {
+    "mean": 157366.0,
+    "ci": 3986.386,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 28.693,
+    "ci": 8.012,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.188,
+    "ci": 0.089,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 154.013,
+    "ci": 9.283,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 38.95,
+    "ci": 13.417,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 55.477,
+    "ci": 7.485,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 55.517,
+    "ci": 10.343,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "restricted_share": "0.0",
+   "attainment": {
+    "mean": 76.05,
+    "ci": 9.487,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1468.333,
+    "ci": 68.366,
+    "n": 3
+   },
+   "failed": {
+    "mean": 1.0,
+    "ci": 2.483,
+    "n": 3
+   },
+   "requests": {
+    "mean": 160198.667,
+    "ci": 316.533,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 28.64,
+    "ci": 9.202,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.191,
+    "ci": 0.102,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 269.42,
+    "ci": 111.275,
+    "n": 3
+   },
+   "attainment_restricted": null,
+   "attainment_internal": {
+    "mean": 77.553,
+    "ci": 9.19,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 74.493,
+    "ci": 9.917,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "restricted_share": "0.1",
+   "attainment": {
+    "mean": 76.387,
+    "ci": 8.51,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1623.333,
+    "ci": 187.98,
+    "n": 3
+   },
+   "failed": {
+    "mean": 3.667,
+    "ci": 8.719,
+    "n": 3
+   },
+   "requests": {
+    "mean": 160742.333,
+    "ci": 1398.748,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 1445.667,
+    "ci": 3568.919,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 28.167,
+    "ci": 7.167,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.184,
+    "ci": 0.072,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 273.787,
+    "ci": 94.11,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 79.5,
+    "ci": 2.719,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 78.313,
+    "ci": 7.756,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 73.623,
+    "ci": 10.681,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "restricted_share": "0.3",
+   "attainment": {
+    "mean": 70.523,
+    "ci": 13.387,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1776.667,
+    "ci": 334.538,
+    "n": 3
+   },
+   "failed": {
+    "mean": 7.667,
+    "ci": 22.251,
+    "n": 3
+   },
+   "requests": {
+    "mean": 158782.0,
+    "ci": 10380.954,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 14506.0,
+    "ci": 8949.821,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 29.637,
+    "ci": 7.559,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.202,
+    "ci": 0.088,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 239.313,
+    "ci": 64.575,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 76.423,
+    "ci": 9.137,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 72.493,
+    "ci": 10.976,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 63.153,
+    "ci": 26.06,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "restricted_share": "0.5",
+   "attainment": {
+    "mean": 74.977,
+    "ci": 8.904,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1535.0,
+    "ci": 164.209,
+    "n": 3
+   },
+   "failed": {
+    "mean": 9.667,
+    "ci": 9.399,
+    "n": 3
+   },
+   "requests": {
+    "mean": 160022.0,
+    "ci": 6773.943,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 15978.333,
+    "ci": 25766.11,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 28.277,
+    "ci": 7.64,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.186,
+    "ci": 0.083,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 267.997,
+    "ci": 97.745,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 75.14,
+    "ci": 6.565,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 74.73,
+    "ci": 10.793,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 74.93,
+    "ci": 11.504,
+    "n": 3
+   }
+  },
+  {
+   "config": "PB-noRes",
+   "restricted_share": "0.7",
+   "attainment": {
+    "mean": 75.973,
+    "ci": 2.446,
+    "n": 3
+   },
+   "p95_ms": {
+    "mean": 1675.0,
+    "ci": 484.744,
+    "n": 3
+   },
+   "failed": {
+    "mean": 2.667,
+    "ci": 3.792,
+    "n": 3
+   },
+   "requests": {
+    "mean": 161300.0,
+    "ci": 454.886,
+    "n": 3
+   },
+   "rejected_no_dest": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "residency_violations": {
+    "mean": 26932.0,
+    "ci": 11074.734,
+    "n": 3
+   },
+   "spend_inr": {
+    "mean": 28.167,
+    "ci": 7.167,
+    "n": 3
+   },
+   "ceiling_breached": {
+    "mean": 0.0,
+    "ci": 0.0,
+    "n": 3
+   },
+   "public_node_hours": {
+    "mean": 0.184,
+    "ci": 0.072,
+    "n": 3
+   },
+   "attainment_per_100inr": {
+    "mean": 271.293,
+    "ci": 56.962,
+    "n": 3
+   },
+   "attainment_restricted": {
+    "mean": 75.13,
+    "ci": 3.163,
+    "n": 3
+   },
+   "attainment_internal": {
+    "mean": 77.093,
+    "ci": 1.82,
+    "n": 3
+   },
+   "attainment_public": {
+    "mean": 78.563,
+    "ci": 0.929,
+    "n": 3
+   }
+  }
+ ]
+}

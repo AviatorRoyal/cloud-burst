@@ -1,4 +1,5 @@
-const { K, newDeck, content, darkSlide, card, badge, txt, bullets, code, arrow, todoTag, chartOpts, table, hdr, save } = require("./common");
+const { K, newDeck, content, darkSlide, card, badge, txt, bullets, code, arrow, chartOpts, table, hdr, save } = require("./common");
+const { BED, val, evidence, fmt, readJSON } = require("./data");
 const OUT = process.argv[2];
 const p = newDeck("Review 1", "P11 Review 1 — Problem Formulation and Baseline");
 
@@ -76,7 +77,7 @@ s = content(p, "Problem", "Falsifiable hypotheses", "Method X reduces metric M b
 const hyp = [
   ["H1", K.teal, "Efficiency (O1–O3)",
     [{ text: "PolicyBurst ", options: { bold: true } }, { text: "improves " }, { text: "SLO attainment per ₹ spent ", options: { bold: true } }, { text: "by " }, { text: "≥ 25% ", options: { bold: true, color: K.teal } },
-     { text: "over " }, { text: "threshold-only bursting ", options: { bold: true } }, { text: "under bursts of 2–6× private capacity with a fixed monthly ceiling." }]],
+     { text: "over " }, { text: "threshold-only bursting ", options: { bold: true } }, { text: "under bursts of 1.5–4× private capacity with a fixed monthly ceiling." }]],
   ["H2", K.amber, "Hard-constraint compliance",
     [{ text: "PolicyBurst records " }, { text: "zero ", options: { bold: true, color: K.amber } }, { text: "ceiling breaches and " }, { text: "zero ", options: { bold: true, color: K.amber } },
      { text: "residency violations in every run, while the threshold baseline breaches the ceiling whenever cumulative burst load exceeds the budget." }]],
@@ -153,38 +154,30 @@ txt(s, "“Partial” = treated as a soft objective, a manual setting, or only i
 s.addNotes("This matrix is our contribution statement. The bottom row is what we must demonstrate by the final review.");
 
 // ---------- 9. Testbed architecture ----------
-s = content(p, "Testbed", "Testbed design", "Private k3s cluster on campus hardware, public free-tier nodes joined over an encrypted overlay");
+s = content(p, "Testbed", "Testbed design", "A real 5-node k3s cluster: 2 private nodes and 3 public nodes, every node 2 vCPU");
 card(p, s, 0.6, 1.85, 5.6, 4.85, K.tealL);
-txt(s, "PRIVATE CAPACITY — on-prem, India", 0.85, 2.0, 5.1, 0.35, { fontSize: 13, bold: true, color: K.teal });
-const pv = ["k3s server (control plane)", "k3s agent-1 · agent-2 (Ubuntu VMs)", "Prometheus + metrics-server", "PolicyBurst controller (Python)", "Sample app: 3 services, data-class labels"];
+txt(s, "PRIVATE CAPACITY — region IN", 0.85, 2.0, 5.1, 0.35, { fontSize: 13, bold: true, color: K.teal });
+const pv = ["server-0: k3s server + control plane", "agent-0: k3s agent", "metrics-server · HPA (60% CPU, 1–30 pods)", "PolicyBurst controller · Locust (on host)", "App: records / lms / static (3 data classes)"];
 pv.forEach((t, i) => { card(p, s, 0.85, 2.45 + i * 0.82, 5.1, 0.64, K.white, { line: K.teal }); txt(s, t, 1.05, 2.45 + i * 0.82, 4.8, 0.64, { fontSize: 14, valign: "middle" }); });
-card(p, s, 7.1, 1.85, 5.6, 3.3, K.amberL);
-txt(s, "PUBLIC OVERFLOW POOL", 7.35, 2.0, 5.1, 0.35, { fontSize: 13, bold: true, color: "B5761A" });
-const pb = [["pub-in: free-tier VM, Indian region", "region=IN · tainted burst=public"], ["pub-far: same VM + 120 ms netem delay", "region=non-IN (emulated far region)"]];
-pb.forEach((t, i) => { const y = 2.45 + i * 1.3; card(p, s, 7.35, y, 5.1, 1.1, K.white, { line: K.amber }); txt(s, [{ text: t[0], options: { bold: true, breakLine: true } }, { text: t[1], options: { color: K.muted } }], 7.55, y + 0.12, 4.8, 0.9, { fontSize: 14 }); });
-txt(s, "WireGuard / Tailscale overlay", 6.25, 3.05, 0.85, 1.2, { fontSize: 10, color: K.muted, align: "center", valign: "middle" });
+card(p, s, 7.1, 1.85, 5.6, 3.55, K.amberL);
+txt(s, "PUBLIC OVERFLOW POOL — tainted, cordoned until needed", 7.35, 2.0, 5.1, 0.35, { fontSize: 13, bold: true, color: "B5761A" });
+const pb = [["pub-in · agent-1", "region IN · no added delay"], ["pub-sg · agent-2", "region non-IN · +40 ms netem"], ["pub-us · agent-3", "region non-IN · +120 ms netem"]];
+pb.forEach((t, i) => { const y = 2.45 + i * 0.95; card(p, s, 7.35, y, 5.1, 0.8, K.white, { line: K.amber }); txt(s, [{ text: t[0] + "   ", options: { bold: true } }, { text: t[1], options: { color: K.muted } }], 7.55, y, 4.8, 0.8, { fontSize: 14, valign: "middle" }); });
+txt(s, "Docker bridge + netem", 6.25, 3.05, 0.85, 1.2, { fontSize: 10, color: K.muted, align: "center", valign: "middle" });
 arrow(p, s, 6.2, 4.4, 7.1, 4.4, K.ink); arrow(p, s, 7.1, 2.9, 6.2, 2.9, K.ink);
-card(p, s, 7.1, 5.45, 5.6, 1.25, K.bg2);
-txt(s, [{ text: "Locust load generator ", options: { bold: true } }, { text: "drives bursts of 2–6× capacity for 1–5 min against the app ingress; results land in CSV + Prometheus." }], 7.35, 5.55, 5.1, 1.05, { fontSize: 14, valign: "middle" });
-s.addNotes("Free-tier options: Oracle Cloud Always Free (Hyderabad/Mumbai) or AWS free tier in ap-south-1. A second public destination outside India is emulated with tc netem delay plus a non-IN region label, since a second paid region is out of budget — we state this as a threat to validity.");
+card(p, s, 7.1, 5.6, 5.6, 1.1, K.bg2);
+txt(s, [{ text: "Host: ", options: { bold: true } }, { text: "DEATHSTAR, WSL2 Ubuntu 26.04, 16 vCPU · k3s v1.35.5 via k3d 5.9 · node CPU capped with docker --cpus" }], 7.35, 5.65, 5.1, 1.0, { fontSize: 13, valign: "middle" });
+s.addNotes("Every node is a real k3s node; the public pool runs on the same host, with region labels, taints and netem WAN delay. The repo also has deploy/k3s scripts that join real free-tier VMs over Tailscale with the same labels — that is the planned final-review upgrade, listed as a threat to validity.");
 
 // ---------- 10. Testbed evidence ----------
-s = content(p, "Testbed", "Testbed evidence: the environment runs", "Rubric: a screenshot or log proving it runs — slides alone score 0");
-const ev = [
-  ["kubectl get nodes -o wide --show-labels", "Private server + agents and the public node(s) all Ready, with region labels"],
-  ["kubectl get pods -A -o wide", "App pods on private nodes; Prometheus and controller running"],
-];
-ev.forEach((e, i) => {
-  const x = 0.6 + i * 6.2;
-  card(p, s, x, 1.8, 5.9, 3.85, K.bg2, { line: K.line, dash: "dash" });
-  todoTag(p, s, x + 0.2, 1.95, "INSERT SCREENSHOT FROM YOUR TESTBED", 3.6);
-  txt(s, e[1], x + 0.3, 2.5, 5.3, 0.8, { fontSize: 14, color: K.muted });
-  code(p, s, "$ " + e[0], x + 0.3, 3.45, 5.3, 0.6, 13);
-  txt(s, "Paste screenshot here (crop to the terminal, include hostname and timestamp)", x + 0.3, 4.3, 5.3, 1.0, { fontSize: 12, italic: true, color: K.muted, align: "center", valign: "middle" });
-});
-card(p, s, 0.6, 5.85, 12.1, 0.85, K.tealL);
-txt(s, [{ text: "Also attach: ", options: { bold: true } }, { text: "k3s agent join log from the public VM · Locust web UI at a burst peak · `kubectl describe node pub-in` showing taints and labels." }], 0.85, 5.9, 11.6, 0.75, { fontSize: 14, valign: "middle" });
-s.addNotes("Replace the two frames with real screenshots before the review. Timestamps and hostnames make it obvious the environment is ours and live.");
+const E = evidence();
+const [evHost, evTime] = E.host.split("\n");
+s = content(p, "Testbed", "Testbed evidence: the environment runs", `Captured on ${evHost} at ${evTime.replace("T", " ").replace("+00:00", " UTC")} · raw output in ${E.dir}/`);
+txt(s, "Nodes, with destination and region labels", 0.6, 1.75, 12.1, 0.35, { fontSize: 15, bold: true, color: K.ink });
+code(p, s, "$ kubectl get nodes -L p11.burst/destination,p11.burst/region\n" + E.nodes, 0.6, 2.15, 12.1, 1.95, 12);
+txt(s, "Workload pods and measured round-trip time to each node", 0.6, 4.3, 12.1, 0.35, { fontSize: 15, bold: true, color: K.ink });
+code(p, s, "$ kubectl get pods -n p11-app -o custom-columns=...\n" + E.pods + (E.rtt ? "\n\n$ ping -c 5 <node-ip>   (avg RTT)\n" + E.rtt : ""), 0.6, 4.7, 12.1, 2.0, 11);
+s.addNotes("These are copies of real terminal output saved by deploy/k3s/05-evidence.sh. The two foreign-region nodes show the added netem delay in their round-trip times.");
 
 // ---------- 11. Baselines ----------
 s = content(p, "Baseline", "Baselines named in the statement", "Both baselines share the same app, load and metrics as PolicyBurst — only the decision logic differs");
@@ -200,7 +193,7 @@ txt(s, bullets([
 card(p, s, 6.8, 1.85, 5.9, 4.85, K.amberL);
 badge(p, s, 7.05, 2.05, 0.8, K.amber, "B1", 16);
 txt(s, "Threshold-only bursting", 8.05, 2.15, 4.4, 0.5, { fontSize: 20, bold: true, color: K.ink });
-code(p, s, "every 15 s:\n  if cpu > 75% or pending > 0 for 30 s:\n      uncordon public node\n      add toleration -> any pod\n  if cpu < 40% for 5 min:\n      drain + cordon public node", 7.05, 2.9, 5.4, 2.1, 12);
+code(p, s, "every 15 s:\n  if cpu > 75% or pending > 0 for 30 s:\n      uncordon cheapest public node\n      allow every pod on every node\n  if cpu < 40% for 2 min:\n      drain + cordon priciest public node", 7.05, 2.9, 5.4, 2.1, 12);
 txt(s, bullets([
   "No spend ceiling, no latency or residency check",
   "Same reconcile loop as PolicyBurst with constraints switched off",
@@ -208,21 +201,33 @@ txt(s, bullets([
 s.addNotes("Implementing B1 inside our own codebase (constraints disabled) keeps the comparison fair: any gain comes from the policy, not from different plumbing.");
 
 // ---------- 12. Baseline numbers ----------
-s = content(p, "Baseline", "Baseline reproduced: first numbers", "Reference burst: 4× private capacity for 3 min, 3 repetitions, mean ± sd");
+const bq = (c, m) => val(BED.by_magnitude_180s, { config: c, magnitude: 2 }, m);
+const bci = (c, m) => val(BED.by_magnitude_180s, { config: c, magnitude: 2 }, m, "ci");
+const nRuns = val(BED.by_magnitude_180s, { config: "B1", magnitude: 2 }, "attainment", "n");
+s = content(p, "Baseline", "Baseline reproduced: first numbers", `Measured on the testbed: 2× private capacity for 180 s, ${nRuns} repetitions, mean ± 95% CI`);
 const bRows = [
-  [hdr("Config"), hdr("SLO attainment (%)"), hdr("p95 latency (ms)"), hdr("Rejected / failed req."), hdr("Public node-hours"), hdr("Spend (₹, shadow)"), hdr("Attainment per ₹100")],
-  ...["B0 — No bursting", "B1 — Threshold-only"].map((n, i) => [{ text: n, options: { bold: true, fill: { color: i ? K.amberL : K.bg2 } } },
-    ...Array(6).fill(0).map(() => ({ text: "___", options: { align: "center", color: K.coral, fill: { color: i ? K.amberL : K.bg2 } } }))]),
+  [hdr("Config"), hdr("SLO attainment (%)"), hdr("p95 latency (ms)"), hdr("Failed requests"), hdr("Public node-hours"), hdr("Spend (₹, shadow)"), hdr("Residency violations")],
+  ...[["B0", "B0 — No bursting"], ["B1", "B1 — Threshold-only"]].map(([c, n], i) => [{ text: n, options: { bold: true, fill: { color: i ? K.amberL : K.bg2 } } },
+    ...[`${fmt(bq(c, "attainment"))} ± ${fmt(bci(c, "attainment"))}`, fmt(bq(c, "p95_ms"), 0), fmt(bq(c, "failed"), 0), fmt(bq(c, "public_node_hours"), 2), fmt(bq(c, "spend_inr"), 1), fmt(bq(c, "residency_violations"), 0)]
+      .map((t) => ({ text: t, options: { align: "center", fill: { color: i ? K.amberL : K.bg2 } } }))]),
 ];
-table(s, bRows, 0.6, 1.85, [2.5, 1.65, 1.65, 1.75, 1.55, 1.5, 1.5], { fontSize: 13, rowH: 0.55 });
-todoTag(p, s, 9.1, 1.4, "FILL FROM results/baseline_*.csv", 3.6);
-card(p, s, 0.6, 3.75, 7.4, 2.95, K.bg2, { line: K.line, dash: "dash" });
-todoTag(p, s, 0.8, 3.9, "INSERT PLOT: latency over time, B0 vs B1", 3.6);
-txt(s, "Locust response-time plot across the burst window, with the 300 ms SLO line", 0.9, 4.5, 6.8, 1.9, { fontSize: 13, italic: true, color: K.muted, align: "center", valign: "middle" });
-card(p, s, 8.3, 3.75, 4.4, 2.95, K.white, { line: K.line });
-txt(s, "What we expect to see", 8.5, 3.9, 4.0, 0.4, { fontSize: 16, bold: true, color: K.ink });
-txt(s, bullets(["B0: attainment collapses during the burst; zero spend", "B1: attainment recovers, spend grows without bound", "Neither respects residency — the gap PolicyBurst closes"], { gap: 4 }), 8.5, 4.35, 4.0, 2.25, { fontSize: 14 });
-s.addNotes("Fill this table from the actual baseline runs before the review. The rubric only credits a baseline that runs and produces numbers.");
+table(s, bRows, 0.6, 1.8, [2.5, 1.75, 1.6, 1.6, 1.55, 1.55, 1.55], { fontSize: 13, rowH: 0.5 });
+const TL = readJSON("results/testbed/timeline.json");
+const nBins = Math.min(TL.B0.length, TL.B1.length);
+const tlLabels = TL.B0.slice(0, nBins).map((r) => (r.t / 60).toFixed(1));
+s.addChart(p.charts.LINE, [
+  { name: "B0 No bursting", labels: tlLabels, values: TL.B0.slice(0, nBins).map((r) => r.attainment ?? 0) },
+  { name: "B1 Threshold-only", labels: tlLabels, values: TL.B1.slice(0, nBins).map((r) => r.attainment ?? 0) },
+], chartOpts({ x: 0.6, y: 3.45, w: 7.6, h: 3.25, title: "SLO attainment per 15 s window (%), repetition 1", chartColors: [K.muted, K.amber],
+  lineSize: 2, lineDataSymbol: "none", valAxisMinVal: 0, valAxisMaxVal: 100, catAxisTitle: "Minutes into run (burst from 2.0 to 5.0)", showCatAxisTitle: true, catAxisLabelFrequency: 4 }));
+card(p, s, 8.5, 3.45, 4.2, 3.25, K.white, { line: K.line });
+txt(s, "What the numbers show", 8.7, 3.55, 3.8, 0.4, { fontSize: 16, bold: true, color: K.ink });
+txt(s, bullets([
+  `Bursting lifts attainment from ${fmt(bq("B0", "attainment"), 0)}% to ${fmt(bq("B1", "attainment"), 0)}%`,
+  `B1 spends ₹${fmt(bq("B1", "spend_inr"), 1)} per burst with no ceiling check`,
+  `B1 served ${fmt(bq("B1", "residency_violations"), 0)} restricted requests outside India per run`,
+], { gap: 4 }), 8.7, 4.0, 3.85, 2.6, { fontSize: 14 });
+s.addNotes("Raw data: results/testbed/runs/<config>_m2_d180_s0.3_r<rep>/ (events.jsonl, summary.json). Requests are logged per Locust process.");
 
 // ---------- 13. Plan ----------
 s = content(p, "Plan", "Plan to Review 2", "Objectives O1 and O2 evidenced in code by 23/09/2026");

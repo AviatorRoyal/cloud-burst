@@ -1,0 +1,439 @@
+3 runs planned
+
+=== PB_m2_d180_s0.3_r1 ===
+$ kubectl -n p11-app scale deploy records --replicas=1
+deployment.apps/records scaled
+$ kubectl -n p11-app scale deploy lms --replicas=1
+deployment.apps/lms scaled
+$ kubectl -n p11-app scale deploy static --replicas=1
+deployment.apps/static scaled
+$ kubectl -n p11-app delete pod -l p11.burst/managed=true --field-selector status.phase!=Running
+No resources found
+$ kubectl -n p11-app rollout status deploy records --timeout=180s
+deployment "records" successfully rolled out
+$ kubectl -n p11-app rollout status deploy lms --timeout=180s
+deployment "lms" successfully rolled out
+$ kubectl -n p11-app rollout status deploy static --timeout=180s
+deployment "static" successfully rolled out
+[2026-10-25 23:24:01,381] DEATHSTAR/INFO/locust.main: Starting Locust 2.47.0
+[2026-10-25 23:24:01,420] DEATHSTAR/INFO/locust.runners: DEATHSTAR_71a149f1feb64f16836d05f2ad90f399 (index 0) reported as ready. 1 workers connected.
+[2026-10-25 23:24:01,421] DEATHSTAR/INFO/locust.runners: DEATHSTAR_89ee5f44944d4d1ea05db95a04dedb7d (index 1) reported as ready. 2 workers connected.
+[2026-10-25 23:24:01,422] DEATHSTAR/INFO/locust.runners: DEATHSTAR_c28ea833f7694593929e167564059936 (index 2) reported as ready. 3 workers connected.
+[2026-10-25 23:24:01,423] DEATHSTAR/INFO/locust.runners: DEATHSTAR_ded36de7b46d493798454909b6dcf287 (index 3) reported as ready. 4 workers connected.
+[2026-10-25 23:24:02,421] DEATHSTAR/INFO/locust.runners: Shape test starting.
+[2026-10-25 23:24:02,422] DEATHSTAR/INFO/locust.runners: Shape worker starting
+[2026-10-25 23:24:02,423] DEATHSTAR/INFO/locust.runners: Shape test updating to 12 users at 20.00 spawn rate
+[2026-10-25 23:24:02,424] DEATHSTAR/INFO/locust.runners: Sending spawn jobs of 12 users at 20.00 spawn rate to 4 ready workers
+[2026-10-25 23:24:02,480] DEATHSTAR/INFO/locust.runners: All users spawned: {"AppUser": 12} (12 total users)
+[2026-10-25 23:26:02,519] DEATHSTAR/INFO/locust.runners: Shape test updating to 120 users at 20.00 spawn rate
+[2026-10-25 23:26:02,519] DEATHSTAR/INFO/locust.runners: Sending spawn jobs of 120 users at 20.00 spawn rate to 4 ready workers
+[2026-10-25 23:26:07,576] DEATHSTAR/INFO/locust.runners: All users spawned: {"AppUser": 120} (120 total users)
+[2026-10-25 23:29:02,952] DEATHSTAR/INFO/locust.runners: Shape test updating to 12 users at 20.00 spawn rate
+[2026-10-25 23:29:02,953] DEATHSTAR/INFO/locust.runners: Sending spawn jobs of 12 users at 20.00 spawn rate to 4 ready workers
+[2026-10-25 23:29:08,047] DEATHSTAR/INFO/locust.runners: All users spawned: {"AppUser": 12} (12 total users)
+[2026-10-25 23:32:02,632] DEATHSTAR/INFO/locust.runners: Shape test stopping
+[2026-10-25 23:32:02,633] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:32:02,633] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:32:02,633] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:32:02,633] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:32:02,659] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_ded36de7b46d493798454909b6dcf287' (index 3) quit. 0 workers ready.
+[2026-10-25 23:32:02,662] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_71a149f1feb64f16836d05f2ad90f399' (index 0) quit. 0 workers ready.
+[2026-10-25 23:32:02,662] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:32:02,663] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:32:02,663] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:32:02,664] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_89ee5f44944d4d1ea05db95a04dedb7d' (index 1) quit. 0 workers ready.
+[2026-10-25 23:32:02,669] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:32:02,680] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_c28ea833f7694593929e167564059936' (index 2) quit. 0 workers ready.
+[2026-10-25 23:32:02,683] DEATHSTAR/INFO/locust.runners: The last worker quit, stopping test.
+[2026-10-25 23:32:03,134] DEATHSTAR/INFO/locust.main: Shape test completed, shutting down
+[2026-10-25 23:32:04,141] DEATHSTAR/INFO/locust.main: Shutting down (exit code 1)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      lms                                                                            13926    70(0.50%) |    273       9    7048    110 |   29.00        0.15
+GET      records                                                                        11705    63(0.54%) |    315       0    7047     39 |   24.38        0.13
+GET      static                                                                         13818   112(0.81%) |    322       0    9090     95 |   28.78        0.23
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                     39449   245(0.62%) |    303       0    9090     85 |   82.15        0.51
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      lms                                                                                   110    250    260    260    390    990   2300   3700   5100   7000   7000  13926
+GET      records                                                                                39    100    250    380    790   1700   2800   4300   5200   6000   7000  11705
+GET      static                                                                                 95    260    270    280    600   1500   3300   4400   5200   7700   9100  13818
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             85    250    260    270    600   1500   2700   4300   5100   7000   9100  39449
+
+Error report
+# occurrences      Error                                                                                               
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7d260>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+2                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7f350>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7e690>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7ead0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7d9d0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7cd10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bfa9c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7ee00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b919d0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7df20>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7d8c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+23                 GET static: ConnectionRefusedError(111, 'Connection refused')                                       
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bd8e90>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+2                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1bd89d0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+6                  GET lms: ReadTimeout(ReadTimeoutError("HTTPConnectionPool(host='172.18.0.5', port=30082): Read timed out. (read timeout=5.0)"))
+2                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1be0a70>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7ecf0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1bf8270>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1bf86b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae025bdf0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae0288050>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7f680>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bf9e10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bf87c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+3                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7ff00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae028e580>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae0288160>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae028de10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae026a9c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7e8b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b91150>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b90f30>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae02c8c00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bfacf0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7e360>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae02597b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1bf8380>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7fce0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae0268160>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae0269370>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae028f350>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bd89d0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae028bbd0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7c6b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae0097570>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae02c9260>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+6                  GET records: ConnectionRefusedError(111, 'Connection refused')                                      
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bfa580>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+4                  GET static: ReadTimeout(ReadTimeoutError("HTTPConnectionPool(host='172.18.0.5', port=30083): Read timed out. (read timeout=5.0)"))
+2                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7f790>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae028b460>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7f350>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b909e0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae02587c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bd8b00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae02e59d0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae0270d10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00ebdf0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae028b570>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00eb570>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b91e10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1bfb790>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bf9040>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7e7a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+2                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7fac0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae026ae00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7ef10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b917b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00db8a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae02e5150>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae0270490>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7c8d0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae028bdf0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae028a9c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+2                  GET records: ReadTimeout(ReadTimeoutError("HTTPConnectionPool(host='172.18.0.5', port=30081): Read timed out. (read timeout=5.0)"))
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae0268270>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7fce0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae02c8380>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b93130>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00ae8b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7ce20>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00ad150>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00ad590>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00d8270>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bf8d10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bfaad0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae0148380>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1bf9ae0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00e8d10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00eb350>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7f680>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae028e9c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae0094050>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7fbd0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7d8c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae0258c00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae0259d00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7f9b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae0258af0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae028dae0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1bf8af0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7e250>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00eacf0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae028d260>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae028cc00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7d7b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae02e5480>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae028d9d0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae007d150>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7f240>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00d9480>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+2                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7e8b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7fbd0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7cd10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00e6f10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1bf99d0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae0273460>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae1b7d6a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7d7b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae0271480>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7c8d0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00978a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+2                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b67770>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00e8af0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae0258d10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00ac7c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7e9c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00ebbd0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae01497b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7d040>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae02738a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae00d8490>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae02c8050>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae01138a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae02896a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae00d8e20>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae0273f00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b90e20>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae02cbbd0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae02e5370>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae0272ad0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7f570>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae00e9480>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7f8a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b67770>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1bd8e90>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae026a140>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae0288f30>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae0113020>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae028af10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1bfa140>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7dae0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae026a470>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7f9b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae007f240>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7ebe0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae00e8c00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00ac5a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae01638a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7ee00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b90d10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae00956a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae0289e10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae028bac0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae0269e10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae02c98c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00e9590>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae028e030>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae02596a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae02728b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae0160c00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00acaf0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae028b350>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae01108d0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae028a030>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae02c8160>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae02caf10>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae02689e0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae0259ae0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b7f680>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae00949e0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1b91260>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae0269150>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae0161590>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae00adae0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET lms: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30082) at 0x7d8ae1ad87c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae00ad8c0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET static: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30083) at 0x7d8ae0272e00>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae028a580>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1b7f130>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae02688d0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae01627a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae026b350>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae0268050>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae028c5a0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae025b350>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae1bfa690>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae00968b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae02c9370>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+1                  GET records: ConnectTimeoutError(<HTTPConnection(host='172.18.0.5', port=30081) at 0x7d8ae00946b0>, 'Connection to 172.18.0.5 timed out. (connect timeout=5.0)')
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+
+{"run": "PB_m2_d180_s0.3_r1", "config": "PB", "magnitude": 2.0, "duration_s": 180.0, "restricted_share": 0.3, "rep": 1, "requests": 39449, "attainment": 83.25, "p95_ms": 1312.5, "failed": 245, "rejected_no_dest": 0, "residency_violations": 0, "spend_inr": 27.07, "ceiling_inr": 120.0, "ceiling_breached": false, "public_node_hours": 0.196, "attainment_per_100inr": 307.55, "attainment_restricted": 77.87, "attainment_internal": 87.92, "attainment_public": 83.09}
+
+=== PB_m2_d180_s0.3_r2 ===
+$ kubectl -n p11-app scale deploy records --replicas=1
+deployment.apps/records scaled
+$ kubectl -n p11-app scale deploy lms --replicas=1
+deployment.apps/lms scaled
+$ kubectl -n p11-app scale deploy static --replicas=1
+deployment.apps/static scaled
+$ kubectl -n p11-app delete pod -l p11.burst/managed=true --field-selector status.phase!=Running
+pod "lms-65bbb485c-4wgt8" deleted from p11-app namespace
+pod "lms-65bbb485c-78rcb" deleted from p11-app namespace
+pod "lms-65bbb485c-fsm62" deleted from p11-app namespace
+pod "lms-65bbb485c-gmss7" deleted from p11-app namespace
+pod "lms-65bbb485c-hhv9q" deleted from p11-app namespace
+pod "lms-65bbb485c-lqx69" deleted from p11-app namespace
+pod "lms-65bbb485c-pbbqg" deleted from p11-app namespace
+pod "lms-65bbb485c-x4jxn" deleted from p11-app namespace
+pod "static-598f6bc747-4whqf" deleted from p11-app namespace
+pod "static-598f6bc747-fx7tc" deleted from p11-app namespace
+pod "static-598f6bc747-ht9c4" deleted from p11-app namespace
+pod "static-598f6bc747-jlnnr" deleted from p11-app namespace
+pod "static-598f6bc747-skzmr" deleted from p11-app namespace
+pod "static-598f6bc747-v4qnv" deleted from p11-app namespace
+pod "static-598f6bc747-v9msc" deleted from p11-app namespace
+pod "static-598f6bc747-vfcg5" deleted from p11-app namespace
+pod "static-598f6bc747-zmsvm" deleted from p11-app namespace
+$ kubectl -n p11-app rollout status deploy records --timeout=180s
+deployment "records" successfully rolled out
+$ kubectl -n p11-app rollout status deploy lms --timeout=180s
+deployment "lms" successfully rolled out
+$ kubectl -n p11-app rollout status deploy static --timeout=180s
+deployment "static" successfully rolled out
+[2026-10-25 23:32:38,914] DEATHSTAR/INFO/locust.main: Starting Locust 2.47.0
+[2026-10-25 23:32:38,946] DEATHSTAR/INFO/locust.runners: DEATHSTAR_b813a75f393e4950848aeb5152d1ce98 (index 0) reported as ready. 1 workers connected.
+[2026-10-25 23:32:38,947] DEATHSTAR/INFO/locust.runners: DEATHSTAR_f46be68393714fdfba34c4f83549b374 (index 1) reported as ready. 2 workers connected.
+[2026-10-25 23:32:38,949] DEATHSTAR/INFO/locust.runners: DEATHSTAR_22b40fdfeb4141299bcc47bfb2ef7206 (index 2) reported as ready. 3 workers connected.
+[2026-10-25 23:32:38,949] DEATHSTAR/INFO/locust.runners: DEATHSTAR_3f7a706679c74513b3ff2ed9b8392d69 (index 3) reported as ready. 4 workers connected.
+[2026-10-25 23:32:39,947] DEATHSTAR/INFO/locust.runners: Shape test starting.
+[2026-10-25 23:32:39,948] DEATHSTAR/INFO/locust.runners: Shape worker starting
+[2026-10-25 23:32:39,949] DEATHSTAR/INFO/locust.runners: Shape test updating to 12 users at 20.00 spawn rate
+[2026-10-25 23:32:39,949] DEATHSTAR/INFO/locust.runners: Sending spawn jobs of 12 users at 20.00 spawn rate to 4 ready workers
+[2026-10-25 23:32:40,005] DEATHSTAR/INFO/locust.runners: All users spawned: {"AppUser": 12} (12 total users)
+[2026-10-25 23:34:40,036] DEATHSTAR/INFO/locust.runners: Shape test updating to 120 users at 20.00 spawn rate
+[2026-10-25 23:34:40,037] DEATHSTAR/INFO/locust.runners: Sending spawn jobs of 120 users at 20.00 spawn rate to 4 ready workers
+[2026-10-25 23:34:45,093] DEATHSTAR/INFO/locust.runners: All users spawned: {"AppUser": 120} (120 total users)
+[2026-10-25 23:37:40,019] DEATHSTAR/INFO/locust.runners: Shape test updating to 12 users at 20.00 spawn rate
+[2026-10-25 23:37:40,021] DEATHSTAR/INFO/locust.runners: Sending spawn jobs of 12 users at 20.00 spawn rate to 4 ready workers
+[2026-10-25 23:37:45,106] DEATHSTAR/INFO/locust.runners: All users spawned: {"AppUser": 12} (12 total users)
+[2026-10-25 23:40:40,196] DEATHSTAR/INFO/locust.runners: Shape test stopping
+[2026-10-25 23:40:40,197] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:40:40,197] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:40:40,197] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:40:40,198] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:40:40,244] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_b813a75f393e4950848aeb5152d1ce98' (index 0) quit. 0 workers ready.
+[2026-10-25 23:40:40,246] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_f46be68393714fdfba34c4f83549b374' (index 1) quit. 0 workers ready.
+[2026-10-25 23:40:40,248] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:40:40,248] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:40:40,249] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_3f7a706679c74513b3ff2ed9b8392d69' (index 3) quit. 0 workers ready.
+[2026-10-25 23:40:40,249] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:40:40,249] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:40:40,258] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_22b40fdfeb4141299bcc47bfb2ef7206' (index 2) quit. 0 workers ready.
+[2026-10-25 23:40:40,269] DEATHSTAR/INFO/locust.runners: The last worker quit, stopping test.
+[2026-10-25 23:40:40,698] DEATHSTAR/INFO/locust.main: Shape test completed, shutting down
+[2026-10-25 23:40:41,701] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      lms                                                                            17554     0(0.00%) |    190      11     735    200 |   36.55        0.00
+GET      records                                                                        15274     0(0.00%) |    113      11    1377     92 |   31.80        0.00
+GET      static                                                                         17578     0(0.00%) |    192      13    1092    200 |   36.60        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                     50406     0(0.00%) |    167      11    1377    150 |  104.96        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      lms                                                                                   200    260    280    290    330    390    420    470    600    690    740  17554
+GET      records                                                                                92    140    180    210    250    300    330    360    420   1300   1400  15274
+GET      static                                                                                200    260    270    280    320    370    410    430    540    650   1100  17578
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            150    230    260    270    310    350    410    430    560    680   1400  50406
+
+{"run": "PB_m2_d180_s0.3_r2", "config": "PB", "magnitude": 2.0, "duration_s": 180.0, "restricted_share": 0.3, "rep": 2, "requests": 50406, "attainment": 87.19, "p95_ms": 354.2, "failed": 0, "rejected_no_dest": 0, "residency_violations": 0, "spend_inr": 48.28, "ceiling_inr": 120.0, "ceiling_breached": false, "public_node_hours": 0.35, "attainment_per_100inr": 180.58, "attainment_restricted": 95.17, "attainment_internal": 82.77, "attainment_public": 84.66}
+
+=== PB_m2_d180_s0.3_r3 ===
+$ kubectl -n p11-app scale deploy records --replicas=1
+deployment.apps/records scaled
+$ kubectl -n p11-app scale deploy lms --replicas=1
+deployment.apps/lms scaled
+$ kubectl -n p11-app scale deploy static --replicas=1
+deployment.apps/static scaled
+$ kubectl -n p11-app delete pod -l p11.burst/managed=true --field-selector status.phase!=Running
+pod "lms-65bbb485c-6jwb7" deleted from p11-app namespace
+pod "lms-65bbb485c-7lgdw" deleted from p11-app namespace
+pod "lms-65bbb485c-f8xdp" deleted from p11-app namespace
+pod "lms-65bbb485c-fjd9v" deleted from p11-app namespace
+pod "lms-65bbb485c-g6mdd" deleted from p11-app namespace
+pod "lms-65bbb485c-njgs8" deleted from p11-app namespace
+pod "lms-65bbb485c-t2rgj" deleted from p11-app namespace
+pod "lms-65bbb485c-z66vq" deleted from p11-app namespace
+pod "records-57cbbc7df-6xvcq" deleted from p11-app namespace
+pod "records-57cbbc7df-7b4vw" deleted from p11-app namespace
+pod "static-598f6bc747-6wxsv" deleted from p11-app namespace
+pod "static-598f6bc747-95cvw" deleted from p11-app namespace
+pod "static-598f6bc747-bn29c" deleted from p11-app namespace
+pod "static-598f6bc747-drnd9" deleted from p11-app namespace
+pod "static-598f6bc747-gpgfk" deleted from p11-app namespace
+pod "static-598f6bc747-j74nt" deleted from p11-app namespace
+pod "static-598f6bc747-k9gnf" deleted from p11-app namespace
+pod "static-598f6bc747-t47cq" deleted from p11-app namespace
+pod "static-598f6bc747-vxwbt" deleted from p11-app namespace
+pod "static-598f6bc747-wcp9m" deleted from p11-app namespace
+$ kubectl -n p11-app rollout status deploy records --timeout=180s
+deployment "records" successfully rolled out
+$ kubectl -n p11-app rollout status deploy lms --timeout=180s
+deployment "lms" successfully rolled out
+$ kubectl -n p11-app rollout status deploy static --timeout=180s
+deployment "static" successfully rolled out
+[2026-10-25 23:41:20,809] DEATHSTAR/INFO/locust.main: Starting Locust 2.47.0
+[2026-10-25 23:41:20,842] DEATHSTAR/INFO/locust.runners: DEATHSTAR_c9218bfe2067486b80f5be36040e6ab3 (index 0) reported as ready. 1 workers connected.
+[2026-10-25 23:41:20,843] DEATHSTAR/INFO/locust.runners: DEATHSTAR_edf41f59c9d54e18b7cc51638e802392 (index 1) reported as ready. 2 workers connected.
+[2026-10-25 23:41:20,844] DEATHSTAR/INFO/locust.runners: DEATHSTAR_ee5e7c4c105a44eca3dad1c0ab2c32df (index 2) reported as ready. 3 workers connected.
+[2026-10-25 23:41:20,844] DEATHSTAR/INFO/locust.runners: DEATHSTAR_7aa7ba65df9643ea958912a664303b77 (index 3) reported as ready. 4 workers connected.
+[2026-10-25 23:41:21,842] DEATHSTAR/INFO/locust.runners: Shape test starting.
+[2026-10-25 23:41:21,844] DEATHSTAR/INFO/locust.runners: Shape worker starting
+[2026-10-25 23:41:21,845] DEATHSTAR/INFO/locust.runners: Shape test updating to 12 users at 20.00 spawn rate
+[2026-10-25 23:41:21,847] DEATHSTAR/INFO/locust.runners: Sending spawn jobs of 12 users at 20.00 spawn rate to 4 ready workers
+[2026-10-25 23:41:21,890] DEATHSTAR/INFO/locust.runners: All users spawned: {"AppUser": 12} (12 total users)
+[2026-10-25 23:43:21,936] DEATHSTAR/INFO/locust.runners: Shape test updating to 120 users at 20.00 spawn rate
+[2026-10-25 23:43:21,938] DEATHSTAR/INFO/locust.runners: Sending spawn jobs of 120 users at 20.00 spawn rate to 4 ready workers
+[2026-10-25 23:43:27,017] DEATHSTAR/INFO/locust.runners: All users spawned: {"AppUser": 120} (120 total users)
+[2026-10-25 23:46:21,921] DEATHSTAR/INFO/locust.runners: Shape test updating to 12 users at 20.00 spawn rate
+[2026-10-25 23:46:21,922] DEATHSTAR/INFO/locust.runners: Sending spawn jobs of 12 users at 20.00 spawn rate to 4 ready workers
+[2026-10-25 23:46:27,005] DEATHSTAR/INFO/locust.runners: All users spawned: {"AppUser": 12} (12 total users)
+[2026-10-25 23:49:22,041] DEATHSTAR/INFO/locust.runners: Shape test stopping
+[2026-10-25 23:49:22,043] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:49:22,043] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:49:22,043] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:49:22,043] DEATHSTAR/INFO/locust.runners: Got quit message from master, shutting down...
+[2026-10-25 23:49:22,081] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_c9218bfe2067486b80f5be36040e6ab3' (index 0) quit. 0 workers ready.
+[2026-10-25 23:49:22,083] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_edf41f59c9d54e18b7cc51638e802392' (index 1) quit. 0 workers ready.
+[2026-10-25 23:49:22,085] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:49:22,084] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:49:22,084] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:49:22,085] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_7aa7ba65df9643ea958912a664303b77' (index 3) quit. 0 workers ready.
+[2026-10-25 23:49:22,087] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+[2026-10-25 23:49:22,098] DEATHSTAR/INFO/locust.runners: Worker 'DEATHSTAR_ee5e7c4c105a44eca3dad1c0ab2c32df' (index 2) quit. 0 workers ready.
+[2026-10-25 23:49:22,099] DEATHSTAR/INFO/locust.runners: The last worker quit, stopping test.
+[2026-10-25 23:49:22,544] DEATHSTAR/INFO/locust.main: Shape test completed, shutting down
+[2026-10-25 23:49:23,547] DEATHSTAR/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      lms                                                                            17588     0(0.00%) |    183      15     865    250 |   36.62        0.00
+GET      records                                                                        15243     0(0.00%) |     61       8    1365     27 |   31.74        0.00
+GET      static                                                                         17530     0(0.00%) |    109       9    1782     94 |   36.50        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                     50361     0(0.00%) |    120       8    1782     92 |  104.87        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      lms                                                                                   250    260    270    270    290    330    390    410    520    820    870  17588
+GET      records                                                                                27     37     56     82    160    230    320    400   1000   1300   1400  15243
+GET      static                                                                                 94    110    130    190    270    310    380    410    730   1800   1800  17530
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             92    120    230    260    270    310    380    410    790   1300   1800  50361
+
+{"run": "PB_m2_d180_s0.3_r3", "config": "PB", "magnitude": 2.0, "duration_s": 180.0, "restricted_share": 0.3, "rep": 3, "requests": 50361, "attainment": 94.35, "p95_ms": 306.6, "failed": 0, "rejected_no_dest": 0, "residency_violations": 0, "spend_inr": 47.56, "ceiling_inr": 120.0, "ceiling_breached": false, "public_node_hours": 0.346, "attainment_per_100inr": 198.38, "attainment_restricted": 97.09, "attainment_internal": 91.9, "attainment_public": 94.42}

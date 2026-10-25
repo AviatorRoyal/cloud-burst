@@ -24,8 +24,8 @@ def policy():
     return load_file(ROOT / "deploy/policy/experiment.yaml")
 
 
-def rtts(near=20.0, far=150.0):
-    return {"pub-in": near, "pub-far": far}
+def rtts(near=20.0, sg=70.0, far=150.0):
+    return {"pub-in": near, "pub-sg": sg, "pub-us": far}
 
 
 def wl(name, cls, pending=0):
@@ -37,7 +37,7 @@ def wl(name, cls, pending=0):
 def test_policy_loads_both_files(policy):
     campus = load_file(ROOT / "deploy/policy/campus-default.yaml")
     assert [d.name for d in policy.private] == ["private"]
-    assert {d.name for d in campus.public} == {"pub-in", "pub-far"}
+    assert {d.name for d in campus.public} == {"pub-in", "pub-sg", "pub-us"}
     assert policy.billing_period_hours == 1
 
 
@@ -54,16 +54,16 @@ def test_restricted_never_gets_non_in(policy):
 
 
 def test_latency_filter_drops_far_region(policy):
-    # 2 x 150 ms + 20 ms > 300 ms SLO
-    dests, reason = feasible(policy, "public", rtts(far=150), 20, Constraints())
-    assert {d.name for d in dests} == {"private", "pub-in"}
+    # pub-sg: 2 x 70 + 20 = 160 ms fits; pub-us: 2 x 150 + 20 = 320 ms > 300 ms SLO
+    dests, reason = feasible(policy, "public", rtts(), 20, Constraints())
+    assert {d.name for d in dests} == {"private", "pub-in", "pub-sg"}
     assert reason is None
 
 
 def test_reason_reported_when_no_public_left(policy):
     _, reason = feasible(policy, "restricted", rtts(near=200), 20, Constraints())
     assert reason == "latency"
-    _, reason = feasible(policy, "restricted", {"pub-in": None, "pub-far": 10}, 20, Constraints(latency=False))
+    _, reason = feasible(policy, "restricted", {"pub-in": None, "pub-sg": 10, "pub-us": 10}, 20, Constraints(latency=False))
     assert reason is None  # pub-in survives residency; latency is off
 
 
@@ -125,7 +125,8 @@ def test_waits_for_sustained_pressure_then_bursts(policy):
     d = Decider("policyburst", Constraints(), CostMeter(clock), FAST)
     assert d.decide(policy, obs(clock, [wl("lms", "internal", 3)])).activate == []
     clock.t += 30
-    assert d.decide(policy, obs(clock, [wl("lms", "internal", 3)])).activate == ["pub-in"]
+    # cheapest destination that passes residency and latency for internal data
+    assert d.decide(policy, obs(clock, [wl("lms", "internal", 3)])).activate == ["pub-sg"]
 
 
 def test_threshold_picks_cheapest_even_if_far_and_non_in(policy):
@@ -134,8 +135,8 @@ def test_threshold_picks_cheapest_even_if_far_and_non_in(policy):
     d.decide(policy, obs(clock, [wl("records", "restricted", 3)]))
     clock.t += 30
     plan = d.decide(policy, obs(clock, [wl("records", "restricted", 3)]))
-    assert plan.activate == ["pub-far"]
-    assert set(plan.allowed["p11-app/records"]) == {"private", "pub-in", "pub-far"}
+    assert plan.activate == ["pub-us"]
+    assert set(plan.allowed["p11-app/records"]) == {"private", "pub-in", "pub-sg", "pub-us"}
 
 
 def test_policyburst_keeps_restricted_in_india(policy):
@@ -145,7 +146,7 @@ def test_policyburst_keeps_restricted_in_india(policy):
     clock.t += 30
     plan = d.decide(policy, obs(clock, [wl("records", "restricted", 3)]))
     assert plan.activate == ["pub-in"]
-    assert "pub-far" not in plan.allowed["p11-app/records"]
+    assert not {"pub-sg", "pub-us"} & set(plan.allowed["p11-app/records"])
 
 
 def test_rejection_when_no_permissible_destination(policy):
@@ -188,7 +189,7 @@ def test_threshold_ignores_budget(policy):
     d = Decider("threshold", Constraints(), m, FAST)
     d.decide(policy, obs(clock, [wl("lms", "internal", 3)]))
     clock.t += 30
-    assert d.decide(policy, obs(clock, [wl("lms", "internal", 3)])).activate == ["pub-far"]
+    assert d.decide(policy, obs(clock, [wl("lms", "internal", 3)])).activate == ["pub-us"]
 
 
 def test_one_destination_per_cooldown(policy):
@@ -197,20 +198,20 @@ def test_one_destination_per_cooldown(policy):
     w = [wl("lms", "internal", 5)]
     d.decide(policy, obs(clock, w))
     clock.t += 30
-    assert d.decide(policy, obs(clock, w)).activate == ["pub-far"]
+    assert d.decide(policy, obs(clock, w)).activate == ["pub-us"]
     clock.t += 15
-    assert d.decide(policy, obs(clock, w, active=["pub-far"])).activate == []
+    assert d.decide(policy, obs(clock, w, active=["pub-us"])).activate == []
     clock.t += 15
-    assert d.decide(policy, obs(clock, w, active=["pub-far"])).activate == ["pub-in"]
+    assert d.decide(policy, obs(clock, w, active=["pub-us"])).activate == ["pub-sg"]
 
 
 def test_scale_in_after_idle_most_expensive_first(policy):
     clock = Clock()
     d = Decider("threshold", Constraints(), CostMeter(clock), FAST)
     idle = [wl("lms", "internal", 0)]
-    d.decide(policy, obs(clock, idle, active=["pub-in", "pub-far"], util=0.2))
+    d.decide(policy, obs(clock, idle, active=["pub-in", "pub-us"], util=0.2))
     clock.t += 120
-    assert d.decide(policy, obs(clock, idle, active=["pub-in", "pub-far"], util=0.2)).deactivate == ["pub-in"]
+    assert d.decide(policy, obs(clock, idle, active=["pub-in", "pub-us"], util=0.2)).deactivate == ["pub-in"]
 
 
 def test_noburst_never_activates(policy):
@@ -219,3 +220,48 @@ def test_noburst_never_activates(policy):
     plan = d.decide(policy, obs(clock, [wl("lms", "internal", 9)], active=["pub-in"]))
     assert plan.activate == [] and plan.deactivate == ["pub-in"]
     assert plan.allowed["p11-app/lms"] == ["private"]
+
+
+def test_scale_in_waits_until_pods_fit_on_private(policy):
+    clock = Clock()
+    d = Decider("threshold", Constraints(), CostMeter(clock), FAST)
+    idle = [wl("lms", "internal", 0)]
+    tight = dict(private_free_cpu=0.5, dest_requested_cpu={"pub-us": 2.0})
+    o = obs(clock, idle, active=["pub-us"], util=0.2)
+    o.private_free_cpu, o.dest_requested_cpu = tight["private_free_cpu"], tight["dest_requested_cpu"]
+    d.decide(policy, o)
+    clock.t += 120
+    o = obs(clock, idle, active=["pub-us"], util=0.2)
+    o.private_free_cpu, o.dest_requested_cpu = tight["private_free_cpu"], tight["dest_requested_cpu"]
+    plan = d.decide(policy, o)
+    assert plan.deactivate == [] and plan.notes[0].startswith("scale-in-wait")
+    o.private_free_cpu = 3.0
+    assert d.decide(policy, o).deactivate == ["pub-us"]
+
+
+def test_rollout_guard_blocks_burst_until_affinity_settles(policy):
+    clock = Clock()
+    d = Decider("policyburst", Constraints(), CostMeter(clock), FAST)
+    w = [wl("records", "restricted", 3)]
+    d.decide(policy, obs(clock, w))
+    clock.t += 30
+    o = obs(clock, w)
+    o.current_allowed = {"p11-app/records": {"private", "pub-in", "pub-sg", "pub-us"}}  # old, wider affinity
+    plan = d.decide(policy, o)
+    assert plan.activate == [] and plan.notes[0].startswith("rollout-wait")
+    o.current_allowed = {"p11-app/records": {"private", "pub-in"}}
+    o.rolling = {"p11-app/records"}
+    assert d.decide(policy, o).activate == []
+    o.rolling = set()
+    assert d.decide(policy, o).activate == ["pub-in"]
+
+
+def test_threshold_ignores_rollout_guard(policy):
+    clock = Clock()
+    d = Decider("threshold", Constraints(), CostMeter(clock), FAST)
+    w = [wl("lms", "internal", 3)]
+    d.decide(policy, obs(clock, w))
+    clock.t += 30
+    o = obs(clock, w)
+    o.rolling = {"p11-app/lms"}
+    assert d.decide(policy, o).activate == ["pub-us"]

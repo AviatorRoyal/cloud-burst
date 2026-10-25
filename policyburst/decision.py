@@ -35,6 +35,14 @@ class Observation:
     active: set[str]                    # public destinations currently schedulable
     rtts: dict[str, float | None]       # probed RTT per destination
     service_ms: float = 20.0            # typical in-pod service time
+    # For safe scale-in: unrequested CPU on private nodes, and CPU requested by managed pods
+    # on each public destination. None = unknown (scale-in is then not blocked).
+    private_free_cpu: float | None = None
+    dest_requested_cpu: dict[str, float] = field(default_factory=dict)
+    # Deployments mid-rollout, and the destination set each Deployment's pod template currently
+    # allows. Old ReplicaSets keep the old (wider) affinity until a rollout finishes.
+    rolling: set[str] = field(default_factory=set)
+    current_allowed: dict[str, set[str]] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -101,9 +109,17 @@ class Decider:
         else:
             budget_blocked = False
 
+        # Rollout guard: while a Deployment's affinity is being narrowed, pods of its old ReplicaSet
+        # still carry the old (wider) affinity and could land on a newly opened foreign node.
+        unsettled = sorted(k for k in plan.allowed if k in obs.rolling
+                           or (k in obs.current_allowed and set(plan.allowed[k]) != obs.current_allowed[k]))
+        rollout_blocked = self.constraints.residency and bool(unsettled)
+        if rollout_blocked:
+            plan.notes.append("rollout-wait " + ",".join(unsettled))
+
         # Scale out: one destination per reconcile, after pressure has lasted burst_after_s
         # and the previous activation has had time to absorb pending pods.
-        if (self._hot_since is not None and obs.now - self._hot_since >= self.t.burst_after_s
+        if (not rollout_blocked and self._hot_since is not None and obs.now - self._hot_since >= self.t.burst_after_s
                 and obs.now - self._last_activation >= self.t.burst_after_s):
             for w in pending:
                 permitted = sorted((d for d in policy.public if d.name in plan.allowed[w.key]),
@@ -136,10 +152,16 @@ class Decider:
                 self._last_activation = obs.now
                 break  # one destination per reconcile
 
-        # Scale in: release the most expensive active destination once load has stayed low.
+        # Scale in: release the most expensive active destination once load has stayed low,
+        # but only if its pods fit back on private capacity. Otherwise the evicted pods go
+        # Pending and immediately re-trigger a burst (thrash found in simulation).
         if (active and self._idle_since is not None
                 and obs.now - self._idle_since >= self.t.idle_after_s):
             victim = max(active, key=lambda n: policy.destination(n).rate_per_hour_inr)
-            plan.deactivate.append(victim)
-            self._idle_since = obs.now
+            needed = obs.dest_requested_cpu.get(victim, 0.0)
+            if obs.private_free_cpu is None or needed <= obs.private_free_cpu:
+                plan.deactivate.append(victim)
+                self._idle_since = obs.now
+            else:
+                plan.notes.append(f"scale-in-wait {victim} needs={needed:.2f} free={obs.private_free_cpu:.2f}")
         return plan

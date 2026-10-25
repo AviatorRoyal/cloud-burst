@@ -1,0 +1,7 @@
+NAMESPACE     NAME                                      READY   STATUS    RESTARTS   AGE     IP            NODE               NOMINATED NODE   READINESS GATES
+kube-system   coredns-8db54c48d-jgldp                   1/1     Running   0          3h51m   10.42.3.2     k3d-p11-server-0   <none>           <none>
+kube-system   local-path-provisioner-5d9d9885bc-gnb5c   1/1     Running   0          3h51m   10.42.0.2     k3d-p11-agent-0    <none>           <none>
+kube-system   metrics-server-786d997795-j2j4k           1/1     Running   0          3h51m   10.42.0.4     k3d-p11-agent-0    <none>           <none>
+p11-app       lms-65bbb485c-h4qr2                       1/1     Running   0          109m    10.42.0.110   k3d-p11-agent-0    <none>           <none>
+p11-app       records-57cbbc7df-h8wbc                   1/1     Running   0          28m     10.42.0.115   k3d-p11-agent-0    <none>           <none>
+p11-app       static-598f6bc747-wgss6                   1/1     Running   0          28m     10.42.3.115   k3d-p11-server-0   <none>           <none>

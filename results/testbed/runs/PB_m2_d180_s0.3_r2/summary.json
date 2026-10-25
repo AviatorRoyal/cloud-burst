@@ -1,0 +1,22 @@
+{
+  "run": "PB_m2_d180_s0.3_r2",
+  "config": "PB",
+  "magnitude": 2.0,
+  "duration_s": 180.0,
+  "restricted_share": 0.3,
+  "rep": 2,
+  "requests": 50406,
+  "attainment": 87.19,
+  "p95_ms": 354.2,
+  "failed": 0,
+  "rejected_no_dest": 0,
+  "residency_violations": 0,
+  "spend_inr": 48.28,
+  "ceiling_inr": 120.0,
+  "ceiling_breached": false,
+  "public_node_hours": 0.35,
+  "attainment_per_100inr": 180.58,
+  "attainment_restricted": 95.17,
+  "attainment_internal": 82.77,
+  "attainment_public": 84.66
+}

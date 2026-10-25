@@ -14,15 +14,23 @@ data:
     WORK_MS = float(os.environ.get("WORK_MS", "15"))
     NODE = os.environ.get("NODE_NAME", "?")
     SVC = os.environ.get("SERVICE", "?")
+    def spin(n):
+        x = 0
+        for i in range(n):
+            x += i * i
+        return x
+    # Fixed CPU work per request: calibrate iterations per ms on CPU time (not wall time),
+    # so CFS throttling slows requests down instead of silently shrinking the work.
+    rates = []
+    for _ in range(5):
+        c0 = time.process_time(); spin(200000); rates.append(200000 / max(1e-6, (time.process_time() - c0) * 1000))
+    ITERS = int(max(rates) * WORK_MS)
     class H(BaseHTTPRequestHandler):
         def do_GET(self):
             if self.path == "/healthz":
                 body = b"ok"
             else:
-                end = time.perf_counter() + WORK_MS / 1000   # CPU-bound work per request
-                x = 0
-                while time.perf_counter() < end:
-                    x += 1
+                spin(ITERS)
                 body = json.dumps({"service": SVC, "node": NODE}).encode()
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
@@ -135,7 +143,7 @@ metadata: { name: records, namespace: p11-app }
 spec:
   scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: records }
   minReplicas: 1
-  maxReplicas: 12
+  maxReplicas: 30
   metrics: [{ type: Resource, resource: { name: cpu, target: { type: Utilization, averageUtilization: 60 } } }]
 ---
 apiVersion: autoscaling/v2
@@ -144,7 +152,7 @@ metadata: { name: lms, namespace: p11-app }
 spec:
   scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: lms }
   minReplicas: 1
-  maxReplicas: 12
+  maxReplicas: 30
   metrics: [{ type: Resource, resource: { name: cpu, target: { type: Utilization, averageUtilization: 60 } } }]
 ---
 apiVersion: autoscaling/v2
@@ -153,5 +161,5 @@ metadata: { name: static, namespace: p11-app }
 spec:
   scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: static }
   minReplicas: 1
-  maxReplicas: 12
+  maxReplicas: 30
   metrics: [{ type: Resource, resource: { name: cpu, target: { type: Utilization, averageUtilization: 60 } } }]

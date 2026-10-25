@@ -92,9 +92,11 @@ class Controller:
             else:
                 self.meter.stop(d.name)
         plan = self.decider.decide(policy, obs)
+        evicted = 0
         if not self.args.dry_run:
             for key, dests in plan.allowed.items():
                 self.act.set_allowed(deployments[key], dests)
+            evicted = self.act.evict_misplaced(deployments, plan.allowed, nodes)
             for name in plan.deactivate:
                 self.act.set_active(nodes.get(name, []), False)
                 self.meter.stop(name)
@@ -109,7 +111,7 @@ class Controller:
             "private_util": obs.private_util, "rtts": obs.rtts, "active": sorted(active),
             "pending": {w.key: w.pending for w in obs.workloads if w.pending},
             "activate": plan.activate, "deactivate": plan.deactivate,
-            "rejections": plan.rejections, "notes": plan.notes,
+            "rejections": plan.rejections, "notes": plan.notes, "evicted_misplaced": evicted,
         }
         line = json.dumps(event)
         print(line, flush=True)

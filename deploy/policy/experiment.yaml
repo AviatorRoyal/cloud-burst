@@ -1,6 +1,6 @@
 # Time-compressed policy for experiment runs: one run (about an hour) stands in for a billing month.
 # Shadow rates are scaled up (~100x) and the ceiling scaled down so the budget actually binds
-# within a run. Keep the RATIO between pub-in and pub-far equal to the real price ratio.
+# within a run. Keep the price RATIOS between public destinations equal to the real ones.
 apiVersion: p11.burst/v1
 kind: BurstPolicy
 metadata: { name: experiment, namespace: default }
@@ -13,7 +13,8 @@ spec:
   destinations:
     - { name: private, region: IN, private: true }
     - { name: pub-in, region: IN, ratePerHourINR: 180 }
-    - { name: pub-far, region: non-IN, ratePerHourINR: 120 }
+    - { name: pub-sg, region: non-IN, ratePerHourINR: 140 }   # emulated nearby foreign region
+    - { name: pub-us, region: non-IN, ratePerHourINR: 100 }   # emulated distant foreign region
   residency:
     restricted: [IN]
     internal: [IN, non-IN]
