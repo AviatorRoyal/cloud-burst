@@ -6,6 +6,8 @@ decision rather than filters applied afterwards.
 
 Ramanuj Agarwal · 23BCE1861 · Guide: Indra Priyadarshini S.
 
+**Live demo:** see [DEMO.md](DEMO.md) — a step-by-step script using `demo/demo.sh`.
+
 ## How it works
 
 Every 15 s the controller:
